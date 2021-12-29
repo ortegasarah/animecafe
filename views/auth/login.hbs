@@ -1,0 +1,53 @@
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<div id="g_id_onload"
+    data-client_id="43894148885-moag9ij740ugupq36u2tnqcutvhp321p.apps.googleusercontent.com"
+    data-auto_prompt="false"
+    data-callback="handleCredentialResponse">
+</div>
+
+<div class="g_id_signin"
+    data-type="standard"
+    data-size="large"
+    data-theme="outline"
+    data-text="sign_in_with"
+    data-shape="rectangular"
+    data-logo_alignment="left">
+</div>
+
+<br>
+<br>
+<p> or </p>
+
+<br>
+
+<form method="POST" action="auth/login">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script>
+    function handleCredentialResponse(response) {
+    console.log(response.credential)
+    const data = { id_token: response.credential };
+    const url = 'http://localhost:3000/auth/google'
+
+    fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(resp => resp.json())
+        .then(data => console.log('Nuestro server', data))
+        .catch(console.log);
+
+}
+</script>
