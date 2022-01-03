@@ -1,58 +1,90 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<div id="g_id_onload"
-         data-client_id="43894148885-moag9ij740ugupq36u2tnqcutvhp321p.apps.googleusercontent.com"
-         data-auto_prompt="false"
-         data-callback="handleCredentialResponse">
+
+
+<div class="bgauth">
+  <div class="container " >
+    <div  class="row justify-content-center">
+      <div class="col col-lg-6">
+          <h1 class="centerText"> Welcome to Mangakafe</h1>
       </div>
-      <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="sign_in_with"
-         data-shape="rectangular"
-         data-logo_alignment="left">
+    </div>
+    <div class="row justify-content-center" >
+      <div class="col col-lg-6 col-sm-12 col-md-6">
+        <div class="centerDiv">
+            <div id="g_id_onload"
+              data-client_id="43894148885-moag9ij740ugupq36u2tnqcutvhp321p.apps.googleusercontent.com"
+              data-auto_prompt="false"
+              data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin"
+              data-type="standard"
+              data-size="large"
+              data-theme="outline"
+              data-text="sign_in_with"
+              data-shape="rectangular"
+              data-logo_alignment="left">
+            </div>
+        </div>
+
+        <p class="centerText boldtext"> OR </p>
+
+        <form method="POST" action="/auth/signup" >
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"  placeholder="Enter your email address"  required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password"  placeholder="Enter your password"  required>
+          </div>
+          <div class="mb-3">
+            <label for="confpassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control inputAuth" id="confpassword" name="confirmpassword"   placeholder="Enter your password" required>
+          </div>
+          
+          <div class="centerDiv">
+          <button type="submit" class="buttonAut" >SIGN UP</button>
+          </div>
+
+          <p class="centerText">ALREADY A MEMBER? <a href="/auth/login">SIGN IN </a></p>
+
+          
+        </form>
+
+        {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
 </div>
 
-<br>
-<br>
-<p> or </p>
 
-<br>
 
-<form method="POST" action="auth/signup">
- <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
-    <input type="text" class="form-control" id="name" name="name" required>
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" required>
-  </div>
-  <div class="mb-3">
-    <label for="confpassword" class="form-label">Confirm Password</label>
-    <input type="password" class="form-control" id="confpassword" name="confirmpassword" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+
+
 
 
 <script>
    function handleCredentialResponse(response) {
     console.log(response.credential)
     const data = { id_token: response.credential };
-    const url = 'http://localhost:3000/auth/google'
+    const url = 'http://localhost:3000/auth/signupgoogle'
 
     fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
-        .then(resp => resp.json())
+        .then(resp => {
+          window.open(resp.url, '_self'); 
+        })
         .then(data => console.log('Nuestro server', data))
         .catch(console.log);
 
