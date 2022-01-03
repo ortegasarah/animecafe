@@ -17,6 +17,8 @@ const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
+// use session here:                 V
+require('./config/session.config')(app);
 
 // default value for title local
 const projectName = "mangakafe";
@@ -27,9 +29,11 @@ app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 // 👇 Start handling routes here
 const index = require("./routes/index");
 const auth = require("./routes/auth");
+const users = require("./routes/users");
 
 app.use("/", index);
 app.use("/auth", auth);
+app.use("/users", users);
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
