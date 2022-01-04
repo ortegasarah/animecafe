@@ -1,12 +1,42 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00b7ff;
+    color: #00b7ff;
 }
 
 h1 {
-  color: 15px;
+    color: 15px;
+}
+
+.bgauth {
+    background-color: #E8E8F1;
+    padding: 0 !important;
+    border: 0 !important;
+    height: 100vh
+}
+
+.buttonAut {
+    background-color: #E8FCAB;
+    border-radius: 20px;
+    width: 30%;
+}
+
+.inputAuth {
+    border-radius: 8px !important;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.centerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boldtext {
+    font-weight: bold;
 }
