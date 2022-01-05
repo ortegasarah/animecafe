@@ -15,13 +15,14 @@ router.get("/signup", (req, res, next) => {
 })
 
 router.post("/signupgoogle", [
-    check('id_token', 'token is required').not().isEmpty()
+    check('id_token', 'token is required').not().isEmpty(),
+    validate
 ], async(req, res, next) => {
     const { id_token } = req.body;
 
     try {
-        const { email, name, picture: img } = await googleVerify(id_token);
-        let userdb = await User.findOne({ email });
+        const { email, name, picture: img, idGoogle } = await googleVerify(id_token);
+        const userdb = await User.findOne({ idGoogle });
 
         if (!userdb) {
             const salt = bcryptjs.genSaltSync(10);
@@ -31,7 +32,9 @@ router.post("/signupgoogle", [
                 name,
                 img,
                 password: newPassword,
-                google: true
+                google: true,
+                username: email,
+                idGoogle
             };
             user = await User.create(data);
             req.session.currentUser = user;
@@ -50,8 +53,6 @@ router.post("/signup", [
     check('email', 'email is required').not().isEmpty(),
     check('email', 'email invalid').isEmail(),
     check('name', 'name is required').not().isEmpty(),
-    check('password', 'password is invalid').not().isEmpty().matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/),
-    check('confirmpassword', 'confirmpassword is required').not().isEmpty().matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/),
     validatePasswords, validate
 ], async(req, res, next) => {
     try {
@@ -65,7 +66,8 @@ router.post("/signup", [
             const data = {
                 name,
                 email,
-                password: newPassword
+                password: newPassword,
+                username: email
             }
             const user = await User.create(data);
             req.session.currentUser = user;
@@ -113,12 +115,13 @@ router.post("/login", [
 
 
 router.post("/loginggoogle", [
-    check('id_token', 'token is required').not().isEmpty()
+    check('id_token', 'token is required').not().isEmpty(),
+    validate
 ], async(req, res, next) => {
     const { id_token } = req.body;
     try {
-        const { email } = await googleVerify(id_token);
-        let user = await User.findOne({ email, google: true });
+        const { idGoogle } = await googleVerify(id_token);
+        let user = await User.findOne({ idGoogle, google: true });
         if (!user) {
             res.render('auth/login', { errorMessage: 'Email is already registered. Try to login' });
         } else {
