@@ -2,19 +2,13 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-    color: #00b7ff;
-}
-
-h1 {
-    color: 15px;
+.noborder {
+    padding: 0 !important;
+    border: 0 !important;
 }
 
 .bgauth {
     background-color: #E8E8F1;
-    padding: 0 !important;
-    border: 0 !important;
-    height: 100vh
 }
 
 .buttonAut {
@@ -39,4 +33,20 @@ h1 {
 
 .boldtext {
     font-weight: bold;
+}
+
+.narutoImg {
+    width: 90%;
+    height: 80%;
+}
+
+.contentImgNaruto {
+    display: flex;
+    justify-content: flex-start;
+}
+
+@media (max-width: 600px) {
+    .contentImgNaruto {
+        display: none;
+    }
 }

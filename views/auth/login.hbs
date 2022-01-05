@@ -1,92 +1,79 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-<div class="bgauth">
-    <div class="container">
-        <div  class="row justify-content-center">
-            <div class="col col-lg-6">
-                <h1 class="centerText"> Welcome to Mangakafe</h1>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col col-lg-6 col-sm-12 col-md-6">
-                <div class="centerDiv">
-                    <div id="g_id_onload"
-                    data-client_id="43894148885-moag9ij740ugupq36u2tnqcutvhp321p.apps.googleusercontent.com"
-                    data-auto_prompt="false"
-                    data-callback="handleCredentialResponse">
-                    </div>
 
-                    <div class="g_id_signin"
-                        data-type="standard"
-                        data-size="large"
-                        data-theme="outline"
-                        data-text="sign_in_with"
-                        data-shape="rectangular"
-                        data-logo_alignment="left">
-                    </div>
-                </div>
-
-                <p class="centerText boldtext" > OR </p>
-
-                <form  method="POST" action="/auth/login" >
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email"  name="email" placeholder="Enter your email address" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"  placeholder="Enter your password"  required>
-                    </div>
-                    <div class="centerDiv">
-                        <button type="submit" class="buttonAut">LOGIN</button>
-                    </div>
-                </form>
-                {{#if errorMessage}}
-                    <p class="error">{{errorMessage}}</p>
-                {{/if}}
-            </div>
-        </div>
+  <div class="container-fluid bgauth" >
+    <div  class="row justify-content-center g-0">
+      <div class="col col-lg-6  pt-1">
+          <h1 class="centerText"> Welcome to Mangakafe</h1>
+      </div>
     </div>
-</div>
+    <div class="row justify-content-start g-0 pt-4">
+      <div class=" col col-lg-4 col-sm-12 col-md-6   align-self-end">
+          <img src="../../images/auth/naruto-signup.png" class ="narutoImg"  alt="naruto" >
+      </div>
+      <div class="col col-lg-4 col-sm-12 col-md-6  pt-2 align-self-center "  >
+        <div class="centerDiv">
+            <div id="g_id_onload"
+              data-client_id="43894148885-moag9ij740ugupq36u2tnqcutvhp321p.apps.googleusercontent.com"
+              data-auto_prompt="false"
+              data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin"
+              data-type="standard"
+              data-size="large"
+              data-theme="outline"
+              data-text="sign_in_with"
+              data-shape="rectangular"
+              data-logo_alignment="left">
+            </div>
+        </div>
 
+        <p class="centerText boldtext pt-4"> OR </p>
 
-
-
-
-
+        <form  method="POST" action="/auth/login" class="pt-3">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control inputAuth" id="email"  name="email" placeholder="Enter your email address" required>
+            </div>
+            <div class="mb-3 pb-2">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control inputAuth" id="password" name="password"  placeholder="Enter your password"  required>
+            </div>
+            <div class="centerDiv pt-5">
+                <button type="submit" class="buttonAut">LOGIN</button>
+            </div>
+        </form>
+        <p class="centerText pt-3 pb-5">CREATE NEW ACCOUNT <a href="/auth/signup">SIGN UP </a></p>
+        {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </div>
+      
+    </div>
+  </div>
 
 <script>
-    function handleCredentialResponse(response) {
+   function handleCredentialResponse(response) {
     console.log(response.credential)
     const data = { id_token: response.credential };
     const url = 'http://localhost:3000/auth/loginggoogle'
-    /*axios({
-        method: 'post',
-        url: url,
-        headers: { 'Content-Type': 'application/json' },
-        data: JSON.stringify(data)
-    })
-    .then(response => {
-         window.location.href
-        console.log(response)
-        document.write(response.data);
-        // Here we can do something with the response object
-    })
-    .catch(err => {
-        console.log(err)
-        // Here we catch the error
-    });*/
 
     fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
-        .then(resp =>{
-            window.open(resp.url, '_self'); 
+        .then(resp => {
+          window.open(resp.url, '_self'); 
         })
         .then(data => console.log('Nuestro server', data))
         .catch(console.log);
 
 }
 </script>
+
+
+
+
+
+
