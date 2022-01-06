@@ -40,9 +40,52 @@ body {
     height: 80%;
 }
 
+ul li {
+    list-style: none;
+    padding-bottom: 3%;
+    text-align: center;
+}
+
 .contentImgNaruto {
     display: flex;
     justify-content: flex-start;
+}
+
+.buttonLan {
+    border-radius: 20px;
+    width: 30%;
+    border-style: solid;
+    text-decoration: none;
+    border-width: 1px;
+    border-color: black;
+    padding: 10px 7px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+}
+
+.landingImg {
+    background-image: url(../images/landing/KaijuLanding.jpg);
+    height: 500px;
+    /* You must set a specified height */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.cardLand {
+    margin-top: 20%;
+    background-color: #E4E3E3;
+    border-radius: 10px;
+    opacity: 0.7;
 }
 
 @media (max-width: 600px) {

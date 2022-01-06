@@ -1,5 +1,48 @@
-<h1>{{title}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
-
 <a href="/auth/signup">signup</a>
 <a href="/auth/login">login</a>
+
+
+
+<div class="container-fluid">
+    <div class="row landingImg justify-content-end">
+        <div class="col-12 col-md-4 mr-5">
+            <div class="cardLand p-4">
+                <h4 class="bold" style="font-size: 25px;"> KAIJU NO. 8, VOL. I </h4>
+                <h4 class="bold" style="font-size: 25px;"> BY NAOYA MATSUMOTO</h4>
+                <p class="pt-2" style="font-size: 20px;"> Kafka hopes to one day keep his pact  with his childhod friend Mina to join the Japan Defense Force and fight by her side.</p>
+                <div class=" row justify-content-center pt-2">
+                    <a type="buton" href="" class="buttonLan " > Discover</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-5" style="background-color: #F4F3F0;">
+        <p class="bold pb-4" style="font-size: 25px;">NEW RELEASES THIS MONTH</p>
+        {{#each personajes}}
+            {{> cardPartial this }}
+        {{/each}}
+
+    </div>
+
+    <div class="row p-5">
+        <p class="bold" style="font-size: 25px;">OUR READER'S FAVORITES</p>
+        <div class="col-12 col-md-6">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="..." class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title bold">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
