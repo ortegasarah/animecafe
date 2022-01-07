@@ -1,0 +1,44 @@
+.bgauth {
+    background-color: #E8E8F1;
+    height: 100vh;
+}
+
+.buttonAut {
+    background-color: #E8FCAB;
+    border-radius: 20px;
+    width: 30%;
+}
+
+.inputAuth {
+    border-radius: 8px !important;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.centerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boldtext {
+    font-weight: bold;
+}
+
+.narutoImg {
+    width: 90%;
+    height: 80%;
+}
+
+.contentImgNaruto {
+    display: flex;
+    justify-content: flex-start;
+}
+
+@media (max-width: 600px) {
+    .contentImgNaruto {
+        display: none;
+    }
+}

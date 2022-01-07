@@ -2,53 +2,10 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.noborder {
-    padding: 0 !important;
-    border: 0 !important;
-}
-
-.bgauth {
-    background-color: #E8E8F1;
-}
-
-.buttonAut {
-    background-color: #E8FCAB;
-    border-radius: 20px;
-    width: 30%;
-}
-
-.inputAuth {
-    border-radius: 8px !important;
-}
-
-.centerText {
-    text-align: center;
-}
-
-.centerDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.boldtext {
-    font-weight: bold;
-}
-
-.narutoImg {
-    width: 90%;
-    height: 80%;
-}
-
 ul li {
     list-style: none;
     padding-bottom: 3%;
     text-align: center;
-}
-
-.contentImgNaruto {
-    display: flex;
-    justify-content: flex-start;
 }
 
 .buttonLan {
@@ -86,10 +43,4 @@ ul li {
     background-color: #E4E3E3;
     border-radius: 10px;
     opacity: 0.7;
-}
-
-@media (max-width: 600px) {
-    .contentImgNaruto {
-        display: none;
-    }
 }
