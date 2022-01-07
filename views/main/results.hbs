@@ -1,24 +1,24 @@
 
 
 {{#if results}}
-<section class="gallery">
-    <h1>Results</h1>
-        {{#each results}}
+  <h1>Results</h1>
+  {{#each results}}<div class="container">
 
-  <div class="container">
-    <div class="grid">
-      <div class="column-xs-12 column-md-4">
-        <figure class="img-container">
-          <img src={{image_url}} />
-          <figcaption class="img-content">
-            <h2 class="title">{{title}}</h2>
-          </figcaption>
-        </figure>
-      </div>
+<!-- Card deck -->
+<div class="card-deck row">
+
+  <div class="col-xs-12 col-sm-6 col-md-4">
+  <!-- Card -->
+  <div class="card">
+
+    <a href=`/show/{{title}}`>
+    <img src={{image_url}} class="card-img-top" alt="..."></a>
+    <div class="card-body">
+      <a href=`/show/{{title}}`>
+      <h5 class="card-title">{{title}}</h5></a>
     </div>
   </div>
-      {{/each}}
+</div>
+  {{/each}}
 
-</section>
 {{/if}}
-

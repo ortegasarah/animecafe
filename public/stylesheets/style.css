@@ -24,9 +24,22 @@ body,
 }
 
 /* || General styles */
-a {
-    color: #00b7ff;
+
+/* unvisited link */
+a:link {
+    color: var(--black);
 }
+
+/* visited link */
+a:visited {
+    color: var(--lilac);
+}
+
+/* mouse over link */
+a:hover {
+    color: #db2727;
+}
+
 
 h1 {
     color: 30px;
@@ -64,7 +77,12 @@ h1 {
     font-weight: bold;
 }
 
-/* || NAVIGATION */
+header {
+    background-color: var(--white);
+    width: 100%;
+    border-bottom: var(--black) 2px solid;
+    position: absolute;
+}
 
 nav ul {
     padding: 2.5rem 0;
@@ -76,6 +94,38 @@ nav li {
     padding: 2.5rem 5rem;
     font-size: 1.25rem;
 }
+
+/* || SEARCH BAR */
+.form-control {
+    width: calc(100% - 56px);
+    height: 38px;
+
+    padding-left: 20px;
+    text-transform: capitalize;
+    background: #f3f3f3;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px!important;
+    padding-right: 70px;
+    border: none;
+}
+.btn-search {
+    height: 38px;
+    width: 56px;
+    border-bottom-right-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border: none;
+    transition: background-color .2s ease-out;
+    background: #f3f3f3 url(../img/icon_search-20.d00fcba8.svg) no-repeat 50%;
+    background-size: 20px 20px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
+
 
 /* || MAIN CONTAINER */
 .gallery {
@@ -93,6 +143,7 @@ img {
     width: 100%;
     object-fit: cover;
 }
+
 
 
 @media screen and (max-width: 1024px) {
