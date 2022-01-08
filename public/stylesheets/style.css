@@ -37,8 +37,8 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-    color: #db2727;
-}
+    color: #5e5eb6 !important;
+} 
 
 
 h1 {
@@ -99,7 +99,7 @@ nav li {
 .form-control {
     width: calc(100% - 56px);
     height: 38px;
-
+    border: rgb(145, 145, 145) 1px solid !important ;
     padding-left: 20px;
     text-transform: capitalize;
     background: #f3f3f3;
@@ -113,10 +113,13 @@ nav li {
     width: 56px;
     border-bottom-right-radius: 20px !important;
     border-top-right-radius: 20px !important;
-    border: none;
+    border: rgb(145, 145, 145) 1px solid !important ;
     transition: background-color .2s ease-out;
-    background: #f3f3f3 url(../img/icon_search-20.d00fcba8.svg) no-repeat 50%;
+    background: #f3f3f3 no-repeat 50%;
     background-size: 20px 20px;
+}
+.btn-search:hover{
+    background-color: var(--yellow);
 }
 
 textarea:focus, input:focus{
@@ -144,7 +147,14 @@ img {
     object-fit: cover;
 }
 
+.card {
+    border: none !important;
+    margin: 1em;
+}
 
+.card-img {
+    border-radius: none !important;
+}
 
 @media screen and (max-width: 1024px) {
     .img-content {
