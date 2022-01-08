@@ -33,6 +33,9 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
+//Register partials
+// hbs.registerPartials(path.join(__dirname, 'views/partials'));
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 const auth = require("./routes/auth");

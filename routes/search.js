@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
         let score = "title"
         axios.get(`https://api.jikan.moe/v3/search/manga?q=${title}&page=1&order_by=${score}`)
             .then(responseAxios => {
-                console.log("respuesta de la peticion", responseAxios.data)
+                console.log(responseAxios.data)
                 res.render("main/results", {
                     results: responseAxios.data.results
                 });
