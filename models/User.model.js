@@ -26,6 +26,10 @@ const userSchema = new Schema({
     google: {
         type: Boolean,
         default: false
+    },
+    idGoogle: {
+        type: String,
+        default: ''
     }
 }, {
     timestamps: true,
