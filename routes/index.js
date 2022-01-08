@@ -9,7 +9,6 @@ router.get("/", async(req, res, next) => {
         articles = response_articles.data.articles;
         response_recommendations = await axios.get('https://api.jikan.moe/v3/manga/1/recommendations');
         recommendations = response_recommendations.data.recommendations;
-        console.log("arre")
         data = {
             articles,
             recommendations

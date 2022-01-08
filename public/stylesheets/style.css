@@ -1,6 +1,31 @@
-body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Vollkorn:wght@500;700&display=swap');
+
+/* 
+font-family: 'Roboto', sans-serif;
+font-family: 'Vollkorn', serif; */
+
+:root {
+    /* Palette */
+    --white: #fff;
+    --black: #42413d;
+    --yellow: #E8FCAB;
+    --lilac: #E8E8F1;
+    --beige: #F4F3F0;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+body,
+* {
+    font: 1rem "Roboto", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.1rem;
+    line-height: 1.5;
+}
+
+
+/* || General styles */
 
 ul li {
     list-style: none;

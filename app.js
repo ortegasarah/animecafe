@@ -33,15 +33,19 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 
 app.locals.title = `${capitalized(projectName)}`;
 
+//Register partials
+// hbs.registerPartials(path.join(__dirname, 'views/partials'));
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
+const search= require("./routes/search")
 
 app.use("/", index);
 app.use("/auth", auth);
 app.use("/users", users);
-
+app.use("/search",search)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
