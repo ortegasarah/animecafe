@@ -1,42 +1,47 @@
-<header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Mangakafe</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>{{title}}</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link rel="stylesheet" href="/stylesheets/auth/style.css" />
+   </head>
 
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="title"> 
-    <button class="btn btn-search  my-2 my-sm-0" type="submit">
-      <svg id="a3a03c19-96c6-45cb-ba4e-2203186c42e8" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg"
-          width="1cm" height="1.1cm" viewBox="0 0 30.2375 30.2395">
-          <defs>
-            <style>
-              .a0040308-8462-43b8-be9b-6e50b3bc6f31 {
-                fill: #202020;
-              }
-            </style>
-          </defs>
-          <path class="a0040308-8462-43b8-be9b-6e50b3bc6f31"
-            d="M20.194,3.46a11.8331,11.8331,0,1,0-1.618,18.075,2.4912,2.4912,0,0,0,.676,1.254l6.718,6.718a2.5,2.5,0,0,0,3.535-3.535l-6.718-6.72a2.4994,2.4994,0,0,0-1.253-.674A11.8446,11.8446,0,0,0,20.194,3.46Zm-2.121,14.614a8.8332,8.8332,0,1,1,0-12.492A8.8433,8.8433,0,0,1,18.073,18.0741Z"
-            transform="translate(-0.001 -0.0003)" />
-        </svg>
-        </button>
-  </form>
+   <body>
+     {{> header}}
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">All Mangas</a>
-      </li>
-            <li class="nav-item">
-        <a class="nav-link" href="/auth/login">Log in</a>
-      </li>
-            <li class="nav-item">
-        <a class="nav-link" href="/auth/login">Sign up</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-</header>
+     {{> footer}}
+
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+   </body>
+</html>
+
+<script>
+   function handleCredentialResponse(response) {
+    console.log(response.credential)
+    const data = { id_token: response.credential };
+    const url = 'http://localhost:3000/auth/loginggoogle'
+
+    fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(resp => {
+          window.open(resp.url, '_self'); 
+        })
+        .then(data => console.log('Nuestro server', data))
+        .catch(console.log);
+}
+</script>
+
+
+
+
+
+
