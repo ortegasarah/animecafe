@@ -17,11 +17,11 @@ router.get("/", (req, res, next) => {
             })
             .catch(error => {
                 console.log("error")
-                res.render("header/search");
+                res.render("/");
             })
 
     } else {
-        res.render("header/search");
+        res.render("/");
     }
 });
 

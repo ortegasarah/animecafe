@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +16,13 @@
 
 <body>
   {{> header}}
-
-  {{#if results}}
-
-  <h1>Results</h1>
-
-  {{#each results}}
-  {{> cardPartial this }}
+<div>
+  {{#each id}}
+  <span>kefklsd</span>
+    {{> mangapartial this}}
   {{/each}}
+</div>
 
-  {{/if}}
 
   {{> footer}}
 

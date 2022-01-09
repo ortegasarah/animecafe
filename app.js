@@ -41,11 +41,13 @@ const index = require("./routes/index");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
 const search= require("./routes/search")
+const manga = require("./routes/manga")
 
 app.use("/", index);
 app.use("/auth", auth);
 app.use("/users", users);
 app.use("/search",search)
+app.use("/manga", manga)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
