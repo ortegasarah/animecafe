@@ -33,13 +33,24 @@
 
     <section id="reviews">
       <h1>Reviews</h1>
-<ul>
-  {{#each reviews.reviews}}
-<li>{{reviewer.username}}</li>
-{{content}}
-  {{/each}}
-</ul>
 
+  {{#each reviews.reviews}}
+
+      <div class="reviews-box-container">
+        <div class="reviews-box">
+          <div class="box-top">
+            <div class="profile"></div>
+            <div class="name-user">
+              {{reviewer.username}}
+            </div>
+            <div class="review-text text-truncate" style="max-width: 700px">
+              {{content}}
+            </div>
+          </div>
+
+
+        </div>
+  {{/each}}
 
     </section>
   </div>
