@@ -1,0 +1,17 @@
+.wrapper-manga-info{
+padding-top: 100px;
+margin: 3em;
+
+}
+.manga-info{
+    width: 400px;
+}
+
+    /* || REVIEWS SECTION */
+#reviews{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
