@@ -1,16 +1,22 @@
 <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Mangakafe</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="header">
 
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="title"> 
-    <button class="btn btn-search  my-2 my-sm-0" type="submit">
-      <svg id="a3a03c19-96c6-45cb-ba4e-2203186c42e8" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg"
-          width="1cm" height="1.1cm" viewBox="0 0 30.2375 30.2395">
+    <a href="/"><img src="/images/logo_mangakafe-mobile.svg" alt="logo mangakafe" height="100"
+        class="logo logo-mobile"></a>
+    <a href="/"><img src="/images/logo_mangakafe-big-03.svg" alt="logo mangakafe" height="100"
+        class="logo logo-big"></a>
+
+
+{{!-- 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> --}}
+    <form class="form-inline " action="/search" method="GET">
+      <input class="form-input" type="search" placeholder="Search" aria-label="Search" name="title">
+      <button class="btn-search  my-2 my-sm-0" type="submit">
+        <svg id="a3a03c19-96c6-45cb-ba4e-2203186c42e8" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg"
+          width="0.8cm" height="0.81cm" viewBox="0 0 30.2375 30.2395">
           <defs>
             <style>
               .a0040308-8462-43b8-be9b-6e50b3bc6f31 {
@@ -22,21 +28,27 @@
             d="M20.194,3.46a11.8331,11.8331,0,1,0-1.618,18.075,2.4912,2.4912,0,0,0,.676,1.254l6.718,6.718a2.5,2.5,0,0,0,3.535-3.535l-6.718-6.72a2.4994,2.4994,0,0,0-1.253-.674A11.8446,11.8446,0,0,0,20.194,3.46Zm-2.121,14.614a8.8332,8.8332,0,1,1,0-12.492A8.8433,8.8433,0,0,1,18.073,18.0741Z"
             transform="translate(-0.001 -0.0003)" />
         </svg>
-        </button>
-  </form>
+      </button>
+    </form>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">All Mangas</a>
-      </li>
-            <li class="nav-item">
-        <a class="nav-link" href="/auth/login">Log in</a>
-      </li>
-            <li class="nav-item">
-        <a class="nav-link" href="/auth/login">Sign up</a>
-      </li>
-    </ul>
+
+    <nav class="navigation">
+      <ul class="nav-links">
+        <li>
+          <a href="#">All Mangas</a>
+        </li>
+        <li>
+          <a href="/auth/login">Log in</a>
+        </li>
+        <li class="login-btn">
+          <a href="/auth/login">Sign up</a>
+        </li>
+      </ul>
+    </nav>
+
+
   </div>
-</nav>
+
+
+
 </header>

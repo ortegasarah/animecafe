@@ -7,18 +7,19 @@ font-family: 'Vollkorn', serif; */
 :root {
     /* Palette */
     --white: #fff;
-    --black: #42413d;
-    --yellow: #E8FCAB;
+    --black: #121212;
+    --yellow: rgb(225, 255, 161);
     --lilac: #E8E8F1;
     --beige: #F4F3F0;
 }
 
 * {
     box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
 }
 
-body,
-* {
+body {
     font: 1rem "Roboto", Helvetica, Arial, sans-serif;
     letter-spacing: 0.1rem;
     line-height: 1.5;
@@ -26,12 +27,11 @@ body,
 
 
 /* || General styles */
+h1 {
+    font: 50px "Vollkorn", Helvetica, Arial, sans-serif;
 
-ul li {
-    list-style: none;
-    padding-bottom: 3%;
-    text-align: center;
 }
+
 
 .buttonLan {
     border-radius: 20px;
