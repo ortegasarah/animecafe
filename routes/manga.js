@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Manga = require("../models/Manga.model");
+const axios = require("axios")
 
 
 router.get("/:id", async(req, res, next) => {
