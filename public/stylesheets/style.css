@@ -69,3 +69,12 @@ h1 {
     border-radius: 10px;
     opacity: 0.7;
 }
+
+
+/*card partial landing*/
+
+.card_partial {
+    background-color: red;
+    /*width: 150px;
+    height: 150px;*/
+}

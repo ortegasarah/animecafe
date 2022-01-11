@@ -8,7 +8,7 @@ router.get("/:idMangapi", async(req, res, next) => {
     if (!idMangapi) {
         return res.json({ "msg": "error no data" });
     }
-    const reviews = await Review.findOne({ idMangapi, active: true });
+    const reviews = await Review.findOne({ idMangapi, active: true }).populate('user');
     if (reviews) {
         return res.json({
             "msg": "get reviews",
@@ -61,7 +61,7 @@ router.put("/:id", async(req, res, next) => {
                 "msg": "error no data"
             });
         }
-        const review = await Review.findByIdAndUpdate(id, { tittle, img }, { new: true })
+        const review = await Review.findByIdAndUpdate(id, { description }, { new: true });
         if (review) {
             return res.json({
                 "msg": "put review",
