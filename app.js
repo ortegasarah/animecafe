@@ -40,14 +40,23 @@ app.locals.title = `${capitalized(projectName)}`;
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
-const search= require("./routes/search")
-const manga = require("./routes/manga")
+const search = require("./routes/search");
+const manga = require("./routes/manga");
+const folder = require("./routes/folder");
+const review = require("./routes/review");
+
+
 
 app.use("/", index);
 app.use("/auth", auth);
 app.use("/users", users);
-app.use("/search",search)
-app.use("/manga", manga)
+app.use("/search", search);
+app.use("/manga", manga);
+app.use("/folder", folder);
+app.use("/review", review);
+
+
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
