@@ -39,8 +39,8 @@ router.get("/getFolders/:iduser", async(req, res, next) => {
         if (!iduser) {
             return res.json({ "msg": "error no data", "body": req.body });
         }
-        const folders = await Folder.findOne({ user: iduser, active: true })
-            .populate("manga")
+        const folders = await Folder.find({ user: iduser, active: true })
+            .populate("contentFolder")
             .populate("user");
 
         if (folders) {
