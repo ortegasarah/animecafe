@@ -16,15 +16,11 @@ const mangaSchema = new Schema({
     active: {
         type: Boolean,
         default: true
-    },
-    comments: {
-        type: Schema.Types.ObjectId,
-        ref: "Review"
     }
 }, {
     timestamps: true,
 });
 
-const Manga = model("manga", mangaSchema);
+const Manga = model("Manga", mangaSchema);
 
 module.exports = Manga;

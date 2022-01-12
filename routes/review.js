@@ -33,7 +33,7 @@ router.post("/", async(req, res, next) => {
             user: iduser,
             description
         };
-        const review = Review.create(data);
+        const review = await Review.create(data);
 
         return res.json({
             "msg": "created",
