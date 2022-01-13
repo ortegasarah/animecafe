@@ -3,7 +3,7 @@ const Manga = require("../models/Manga.model");
 const axios = require("axios");
 
 
-/*router.get("/:id", async(req, res, next) => {
+router.get("/:id", async(req, res, next) => {
     try {
         const {
             id
@@ -22,9 +22,9 @@ const axios = require("axios");
         console.log("error", e)
         res.render("error");
     }
-});*/
+});
 
-router.get("/:idMangapi", async(req, res, next) => {
+router.get("/getManga/:idMangapi", async(req, res, next) => {
     try {
         const { idMangapi } = req.params;
         console.log(req.params)
