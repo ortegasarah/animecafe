@@ -4,6 +4,7 @@ const { googleVerify } = require("../helpers/google-verify");
 const User = require("../models/User.model");
 const { check } = require('express-validator');
 const { validate, validatePasswords } = require("../middlewares/validate");
+const axios = require("axios");
 
 
 /**
@@ -36,15 +37,21 @@ router.post("/signupgoogle", [
                 username: email,
                 idGoogle
             };
-            user = await User.create(data);
+            const { _id: idUser } = user;
             req.session.currentUser = user;
+            axios.post('http://localhost:3000/folder/', {
+                "isUser": idUser,
+                "folderName": "favorites",
+                "type": 2
+            });
             res.redirect('/users/user-profile');
         } else {
             res.render('auth/signup', { errorMessage: 'Email is already registered. Try to login' });
         }
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.send("error");
     }
 
 });
@@ -70,14 +77,20 @@ router.post("/signup", [
                 username: email
             }
             const user = await User.create(data);
+            const { _id: idUser } = user;
             req.session.currentUser = user;
+            axios.post('http://localhost:3000/folder/', {
+                "isUser": idUser,
+                "folderName": "favorites",
+                "type": 2
+            });
             res.redirect('/users/user-profile');
         } else {
             res.render('auth/signup', { errorMessage: 'Email is already registered. Try to login' });
         }
     } catch (error) {
-        console.log(error)
-        res.send("error")
+        console.log(error);
+        res.send("error");
     }
 });
 

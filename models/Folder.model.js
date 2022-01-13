@@ -16,6 +16,12 @@ const folderSchema = new Schema({
     active: {
         type: Boolean,
         default: true
+    },
+    type: {
+        type: Number,
+        enum: [0, 1, 2],
+        default: 1,
+        require: [true, 'the type is required']
     }
 }, {
     timestamps: true,

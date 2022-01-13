@@ -66,20 +66,24 @@ router.get("/getFolders/:iduser", async(req, res, next) => {
 router.post("/", async(req, res, next) => {
 
     try {
-        const { isUser, folderName } = req.body;
+        const { isUser, folderName, type } = req.body;
+        let data = { user: "", folderName: "" }
         if (!isUser || !folderName) {
             return res.json({ "msg": "error no data", "body": req.body });
+        } else {
+            data["user"] = isUser;
+            data["folderName"] = folderName;
         }
 
-        const folder = await Folder.findOne({ folderName });
+        if (type) data["type"] = type;
+
+        const folder = await Folder.findOne({ folderName, user: isUser });
         if (!folder) {
-            data = {
-                user: isUser,
-                folderName
-            };
             const manga = Folder.create(data);
         } else {
-            console.log("founded a folder");
+            return res.json({
+                "msg": "founded a folder"
+            });
         }
 
         return res.json({
@@ -185,12 +189,18 @@ router.delete("/:id", async(req, res, next) => {
                 "msg": "error no data"
             });
         }
-        const folder = await Folder.findByIdAndUpdate(id, { active: false }, { new: true })
-        return res.json({
-            "msg": "delete folder",
-            "item": folder
-        });
-
+        const fold = await Folder.findById(id);
+        if (fold.type != 2) {
+            const folder = await Folder.findByIdAndUpdate(id, { active: false }, { new: true })
+            return res.json({
+                "msg": "delete folder",
+                "item": folder
+            });
+        } else {
+            return res.json({
+                "msg": "cant eliminate this folder "
+            });
+        }
     } catch (e) {
         return res.json({
             "msg": "error",
