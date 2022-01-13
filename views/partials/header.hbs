@@ -1,18 +1,18 @@
 <header>
-  <div class="header">
+  
 
     <a href="/"><img src="/images/logo_mangakafe-mobile.svg" alt="logo mangakafe" height="100"
         class="logo logo-mobile"></a>
     <a href="/"><img src="/images/logo_mangakafe-big-03.svg" alt="logo mangakafe" height="100"
         class="logo logo-big"></a>
 
-
+<div class="header">
 {{!-- 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> --}}
-    <form class="form-inline " action="/search" method="GET">
+    {{!-- <form class="form-inline " action="/search" method="GET">
       <input class="form-input" type="search" placeholder="Search" aria-label="Search" name="title">
       <button class="btn-search  my-2 my-sm-0" type="submit">
         <svg id="a3a03c19-96c6-45cb-ba4e-2203186c42e8" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg"
@@ -29,10 +29,10 @@
             transform="translate(-0.001 -0.0003)" />
         </svg>
       </button>
-    </form>
+    </form> --}}
 
 
-    <nav class="navigation">
+    {{!-- <nav class="navigation">
       <ul class="nav-links">
         <li>
           <a href="#">All Mangas</a>
@@ -41,14 +41,36 @@
           <a href="/auth/login">Log in</a>
         </li>
         <li class="login-btn">
-          <a href="/auth/login">Sign up</a>
+          <a href="/auth/signup">Sign up</a>
         </li>
       </ul>
     </nav>
-
-
-  </div>
+  </div> --}}
 
 
 
+  
+            <div class="search_wrap">
+			<div class="search_box">
+				<div class="btn btn_common">
+					<i class="fas fa-search"></i>
+				</div>
+				<input type="text" class="input" placeholder="search...">
+			</div>
+		</div>
+
+
+
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  
+  <nav>
+    <ul>
+      <li><a href="#">All mangas</a></li>
+      <li><a href="/auth/login">Log In</a></li>
+      <li class="login-btn"><a href="/auth/signup">Sign in</a></li>
+    </ul>
+  </nav>
+  <label for="nav-toggle" class="nav-toggle-label">
+    <span></span>
+  </label>
 </header>
