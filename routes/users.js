@@ -2,6 +2,9 @@ const router = require("express").Router();
 const axios = require("axios");
 const User = require("../models/User.model");
 const { validatePasswords } = require("../middlewares/validate");
+const cloudinary = require('cloudinary').v2
+cloudinary.config(process.env.CLOUDINARY_URL);
+
 
 router.get("/user-profile", async(req, res, next) => {
     if (req.session.currentUser) {
@@ -14,6 +17,44 @@ router.get("/user-profile", async(req, res, next) => {
         res.render('');
     }
 
+});
+
+router.get("/profile/:id", async(req, res, next) => {
+    const { id } = req.params;
+    if (id) {
+        const user = await User.findById(id);
+        console.log(user);
+        res.render('users/profile', user);
+    } else {
+        res.render('');
+    }
+});
+
+router.put('/upload/:id', async(req, res, next) => {
+    const { id } = req.params;
+    if (!req.files || Object.keys(req.files).length === 0 || !req.files.archivo) {
+        return res.status(400).json({
+            msg: 'No files were uploaded.'
+        });
+
+    }
+    const user = await User.findById(id);
+
+    if (user.img) {
+        if (!user.img.includes('google')) {
+            const nombreArr = user.img.split('/');
+            const nombre = nombreArr[nombreArr.length - 1];
+            const [public_id] = nombre.split('.');
+            cloudinary.uploader.destroy(public_id);
+        }
+    }
+
+    const { tempFilePath } = req.files.archivo;
+    const { secure_url } = await cloudinary.uploader.upload(tempFilePath);
+    user.img = secure_url;
+    await user.save();
+
+    res.json({ "msg": "uploads" });
 });
 
 
@@ -54,9 +95,6 @@ router.put("/updateUsername/:id", async(req, res, next) => {
             "msg": " username taken",
         });
     }
-
-
-
 });
 
 router.put("/updatePassword/:id", validatePasswords,

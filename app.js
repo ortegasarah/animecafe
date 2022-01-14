@@ -14,6 +14,8 @@ const express = require("express");
 const hbs = require("hbs");
 const path = require('path');
 
+const fileUpload = require('express-fileupload');
+
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 const app = express();
@@ -22,6 +24,11 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
+// upload files
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+}));
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 // use session here:                 V
