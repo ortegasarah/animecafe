@@ -17,78 +17,87 @@
 </head>
 
 <body>
+  {{!-- MANGA INFOS --}}
   {{> header}}
-  <div class="wrapper-manga-info">
-    <div class="wrapper-img">
-      <img class="manga-info" src={{mangainfo.image_url}} />
-    </div>
-    <div class="wrapper-info">
-      <h1>{{mangainfo.title}}</h1>
-      <p>{{mangainfo.synopsis}}</p>
-      <p>Favorites: {{mangainfo.favorites}}</p>
-      <p>Reviews: {{mangainfo.score}}</p>
-      <p>Genres: </p>
+  <section class="manga-detail">
+    <div class="wrapper-manga-info">
+      <div class="wrapper-img">
+        <img class="manga-info" src={{mangainfo.image_url}} />
+      </div>
+      <div class="wrapper-info">
+        <h1>{{mangainfo.title}}</h1>
+        <p>{{mangainfo.synopsis}}</p>
+        <p>Favorites: {{mangainfo.favorites}}</p>
+        <p>Reviews: {{mangainfo.score}}</p>
+        <p>Genres: </p>
 
+      </div>
     </div>
 
+    {{!-- REVIEWS --}}
     <section id="reviews">
       <h1>Reviews</h1>
+      <div class="section-review">
+        {{#each reviews.reviews}}
+        <div class="reviews-box-container">
+          <div class="reviews-box">
+            <div class="box-top">
+              <div class="profile">
+                <div class="name-user">
 
-      {{#each reviews.reviews}}
-
-      <div class="reviews-box-container">
-        <div class="reviews-box">
-          <div class="box-top">
-            <div class="profile">
-              <div class="name-user">
-
-                {{reviewer.username}} rated it <img src="/images/star-score.svg" alt="star score" height="20">
-                {{reviewer.scores.overall}}
-                <br>
-                {{date}}
+                 <h2> {{reviewer.username}}</h2> 
+                 <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
+                  {{reviewer.scores.overall}}</h5>
+                  <br>
+                  {{date}}
+                </div>
               </div>
-            </div>
-            <div class="review-text module line-clamp" style="max-width: 800px">
-              {{content}}
-              <br>
-              <br>
-            </div>
-            <input type="checkbox" id="btn-modal">
-            <label for="btn-modal" class="lbl-modal">Read More</label>
-            <div class="modal">
-              <div class="contenedor">
-                <label for="btn-modal">CLOSE</label>
-                <div class="contenido">
-                  <h3>Review from {{reviewer.username}} </h3>
-                  <div>{{content}}</div>
+              <div class="review-text module line-clamp" style="max-width: 800px">
+                {{content}}
+                <br>
+                <br>
+              </div>
+              <input type="checkbox" id="btn-modal">
+              <label for="btn-modal" class="lbl-modal">Read More</label>
+              <div class="modal">
+                <div class="contenedor">
+                  <label for="btn-modal">CLOSE</label>
+                  <div class="contenido">
+                    <h3>Review from {{reviewer.username}} </h3>
+                    <div>{{content}}</div>
+                  </div>
                 </div>
               </div>
             </div>
-
-
           </div>
-
-
+          {{/each}}
         </div>
-        {{/each}}
-        <br>
-      <h1>Add a review</h1>
-
     </section>
-  </div>
 
-  {{> footer}}
+    {{!-- ADD A REVIEW --}}
+    <section id="add-review">
+      <h1>Add a review</h1>
+      <form id="review-form" action="/" method="POST">
+        <textarea class="form-txt" type="text" placeholder="What did you think of the manga?" aria-label="Review"
+          name="review"></textarea>
+      </form>
+      <button class="btn-submit" type="submit">
+        Submit
+      </button>
+      </div>
+    </section>
+    {{> footer}}
 
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>
