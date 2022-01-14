@@ -4,6 +4,8 @@ const { googleVerify } = require("../helpers/google-verify");
 const User = require("../models/User.model");
 const { check } = require('express-validator');
 const { validate, validatePasswords } = require("../middlewares/validate");
+const axios = require("axios");
+const { v4: uuidv4 } = require('uuid');
 
 
 /**
@@ -12,7 +14,7 @@ const { validate, validatePasswords } = require("../middlewares/validate");
 
 router.get("/signup", (req, res, next) => {
     res.render("auth/signup");
-})
+});
 
 router.post("/signupgoogle", [
     check('id_token', 'token is required').not().isEmpty(),
@@ -27,24 +29,31 @@ router.post("/signupgoogle", [
         if (!userdb) {
             const salt = bcryptjs.genSaltSync(10);
             const newPassword = bcryptjs.hashSync('', salt);
+            const username = uuidv4() + email.split("@")[0];
             const data = {
                 email,
                 name,
                 img,
                 password: newPassword,
                 google: true,
-                username: email,
+                username,
                 idGoogle
             };
-            user = await User.create(data);
+            const { _id: idUser } = user;
             req.session.currentUser = user;
+            axios.post('http://localhost:3000/folder/', {
+                "isUser": idUser,
+                "folderName": "favorites",
+                "type": 2
+            });
             res.redirect('/users/user-profile');
         } else {
             res.render('auth/signup', { errorMessage: 'Email is already registered. Try to login' });
         }
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.send("error");
     }
 
 });
@@ -62,22 +71,29 @@ router.post("/signup", [
         const newPassword = bcryptjs.hashSync(password, salt);
 
         const userdb = await User.findOne({ email });
+        const username = uuidv4() + email.split("@")[0];
         if (!userdb) {
             const data = {
                 name,
                 email,
                 password: newPassword,
-                username: email
+                username
             }
             const user = await User.create(data);
+            const { _id: idUser } = user;
             req.session.currentUser = user;
+            axios.post('http://localhost:3000/folder/', {
+                "isUser": idUser,
+                "folderName": "favorites",
+                "type": 2
+            });
             res.redirect('/users/user-profile');
         } else {
             res.render('auth/signup', { errorMessage: 'Email is already registered. Try to login' });
         }
     } catch (error) {
-        console.log(error)
-        res.send("error")
+        console.log(error);
+        res.send("error");
     }
 });
 

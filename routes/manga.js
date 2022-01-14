@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Manga = require("../models/Manga.model");
-const axios = require("axios")
+const axios = require("axios");
 
 
 router.get("/:id", async(req, res, next) => {
@@ -24,24 +24,32 @@ router.get("/:id", async(req, res, next) => {
     }
 });
 
-router.get("/:idMangapi", async(req, res, next) => {
-    const { idMangapi } = req.params;
-    console.log(req.params)
-    if (!idMangapi) {
-        return res.json({ "msg": "error no data" });
-    }
-    const mangadb = await Manga.findOne({ idMangapi, active: true });
+router.get("/getManga/:idMangapi", async(req, res, next) => {
+    try {
+        const { idMangapi } = req.params;
+        console.log(req.params)
+        if (!idMangapi) {
+            return res.json({ "msg": "error no data" });
+        }
+        const mangadb = await Manga.findOne({ idMangapi, active: true });
 
-    if (mangadb) {
+        if (mangadb) {
+            return res.json({
+                "msg": "get manga",
+                "item": mangadb
+            })
+        } else {
+            return res.json({
+                "msg": "not found"
+            });
+        }
+    } catch (e) {
         return res.json({
-            "msg": "get manga",
-            "item": mangadb
-        })
-    } else {
-        return res.json({
-            "msg": "not found"
+            "msg": "error",
+            "e": e
         });
     }
+
 });
 
 
@@ -60,7 +68,7 @@ router.post("/", async(req, res, next) => {
                 tittle,
                 img
             };
-            const manga = Manga.create(data);
+            const manga = await Manga.create(data);
         } else {
             console.log("founded a manga");
         }
