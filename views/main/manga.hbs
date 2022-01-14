@@ -10,7 +10,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <link rel="stylesheet" href="/stylesheets/auth.css" />
-  <link rel="stylesheet" href="/stylesheets/navbar.css" />
+  <link rel="stylesheet" href="/stylesheets/header.css" />
   <link rel="stylesheet" href="/stylesheets/mangainfo.css" />
   <link rel="stylesheet" href="/stylesheets/footer.css" />
 
@@ -81,7 +81,7 @@
     {{!-- ADD A REVIEW --}}
     <section id="add-review">
       <h1>Add a review</h1>
-      {{#if access}}
+      {{#if userInSession}}
       <form id="review-form" action="/" method="POST">
         <textarea class="form-txt" type="text" placeholder="What did you think of the manga?" aria-label="Review"
           name="review"></textarea>
