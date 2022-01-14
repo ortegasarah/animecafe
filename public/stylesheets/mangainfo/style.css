@@ -1,6 +1,3 @@
-.manga-detail {
-	/* padding: 3em; */
-}
 
 .wrapper-manga-info {
 	border-bottom: var(--black) 1px solid;
@@ -20,6 +17,7 @@
     flex-direction: column; */
 	padding: 3em;
 	background-color: var(--beige);
+	border-bottom: var(--black) 1px solid;
 
 }
 

@@ -28,7 +28,7 @@
         <h1>{{mangainfo.title}}</h1>
         <p>{{mangainfo.synopsis}}</p>
         <p>Favorites: {{mangainfo.favorites}}</p>
-        <p>Reviews: {{mangainfo.score}}</p>
+        <p>Readers' note: {{mangainfo.score}}</p>
         <p>Genres: </p>
 
       </div>
@@ -37,6 +37,7 @@
     {{!-- REVIEWS --}}
     <section id="reviews">
       <h1>Reviews</h1>
+      {{#if reviews.reviews}}
       <div class="section-review">
         {{#each reviews.reviews}}
         <div class="reviews-box-container">
@@ -45,9 +46,9 @@
               <div class="profile">
                 <div class="name-user">
 
-                 <h2> {{reviewer.username}}</h2> 
-                 <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
-                  {{reviewer.scores.overall}}</h5>
+                  <h2> {{reviewer.username}}</h2>
+                  <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
+                    {{reviewer.scores.overall}}</h5>
                   <br>
                   {{date}}
                 </div>
@@ -71,12 +72,16 @@
             </div>
           </div>
           {{/each}}
+          {{else}}
+          <p class="">There is no review yet! Be first to share your opinion on this manga!</p>
+          {{/if}}
         </div>
     </section>
 
     {{!-- ADD A REVIEW --}}
     <section id="add-review">
       <h1>Add a review</h1>
+      {{#if access}}
       <form id="review-form" action="/" method="POST">
         <textarea class="form-txt" type="text" placeholder="What did you think of the manga?" aria-label="Review"
           name="review"></textarea>
@@ -85,6 +90,12 @@
         Submit
       </button>
       </div>
+      {{else}}
+      <p>You must have an account to leave a review</p>
+      <button class="login-btn"><a href="/auth/login">Log In</a></button>
+        <button class="sign-btn"><a href="/auth/signup">Sign in</a></button>
+
+      {{/if}}
     </section>
     {{> footer}}
 
