@@ -81,3 +81,7 @@ a, a:hover {
     color: var(--black);
     text-decoration: none;
 }
+
+#results {
+    padding: 3em;
+}

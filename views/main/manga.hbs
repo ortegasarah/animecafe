@@ -45,12 +45,14 @@
             <div class="box-top">
               <div class="profile">
                 <div class="name-user">
-
-                  <h2> {{reviewer.username}}</h2>
+                  <div class="user-image">
+                    <img src="{{reviewer.image_url}}" alt="{{reviewer.username}} image" class="user-img">
+                  </div>
+                  <h3> {{reviewer.username}}</h3>
                   <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
                     {{reviewer.scores.overall}}</h5>
                   <br>
-                  {{date}}
+
                 </div>
               </div>
               <div class="review-text module line-clamp" style="max-width: 800px">
@@ -61,9 +63,9 @@
               <input type="checkbox" id="btn-modal">
               <label for="btn-modal" class="lbl-modal">Read More</label>
               <div class="modal">
-                <div class="contenedor">
+                <div class="container">
                   <label for="btn-modal">CLOSE</label>
-                  <div class="contenido">
+                  <div class="content">
                     <h3>Review from {{reviewer.username}} </h3>
                     <div>{{content}}</div>
                   </div>
@@ -71,11 +73,12 @@
               </div>
             </div>
           </div>
-          {{/each}}
-          {{else}}
-          <p class="">There is no review yet! Be first to share your opinion on this manga!</p>
-          {{/if}}
         </div>
+        {{/each}}
+        {{else}}
+        <p class="">There is no review yet! Be first to share your opinion on this manga!</p>
+        {{/if}}
+      </div>
     </section>
 
     {{!-- ADD A REVIEW --}}
