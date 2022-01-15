@@ -28,9 +28,7 @@ router.get("/getManga/:idMangapi", async(req, res, next) => {
     try {
         const { idMangapi } = req.params;
         console.log(req.params)
-        if (!idMangapi) {
-            return res.json({ "msg": "error no data" });
-        }
+        if (!idMangapi) res.render("error");
         const mangadb = await Manga.findOne({ idMangapi, active: true });
 
         if (mangadb) {
@@ -57,9 +55,7 @@ router.post("/", async(req, res, next) => {
 
     try {
         const { idMangapi, tittle, img } = req.body;
-        if (!idMangapi || !tittle) {
-            return res.json({ "msg": "error no data", "body": req.body });
-        }
+        if (!idMangapi || !tittle) res.render("error");
 
         const mangadb = await Manga.findOne({ idMangapi });
         if (!mangadb) {
@@ -93,11 +89,7 @@ router.put("/:id", async(req, res, next) => {
         const { id } = req.params;
         const { tittle, img } = req.body;
         console.log("req.params ", id, "req.body", tittle, img)
-        if (!id || !tittle || !img) {
-            return res.json({
-                "msg": "error no data"
-            });
-        }
+        if (!id || !tittle || !img) res.render("error");
         const mangadb = await Manga.findByIdAndUpdate(id, { tittle, img }, { new: true })
         if (mangadb) {
             return res.json({
@@ -119,11 +111,7 @@ router.delete("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
         console.log("req.params ", id)
-        if (!id) {
-            return res.json({
-                "msg": "error no data"
-            });
-        }
+        if (!id) res.render("error");
         const mangadb = await Manga.findByIdAndUpdate(id, { active: false }, { new: true })
         if (mangadb) {
             return res.json({

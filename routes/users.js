@@ -97,22 +97,7 @@ router.put("/updateUsername/:id", async(req, res, next) => {
     }
 });
 
-router.put("/updatePassword/:id", validatePasswords,
-    async(req, res, next) => {
-        const { password } = req.body;
-        const { id } = req.params;
 
-        const salt = bcryptjs.genSaltSync(10);
-        const newPassword = bcryptjs.hashSync(password, salt);
-
-        if (!id) {
-            res.json({ "msg": "missing params", "req.params": req.params, "req.body": req.body })
-        }
-        const user = await User.findByIdAndUpdate(id, { password: newPassword });
-        res.json({
-            "msg": "update password"
-        });
-    });
 
 router.delete("/", async(req, res, next) => {
     try {

@@ -7,9 +7,7 @@ router.get("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
         console.log(req.params)
-        if (!id) {
-            return res.json({ "msg": "error no data", "req.params": req.params });
-        }
+        if (!id) res.render("error");
         const folder = await Folder.findOne({ id, active: true })
             .populate("contentFolder")
             .populate("user");
@@ -36,9 +34,8 @@ router.get("/getFolders/:iduser", async(req, res, next) => {
     try {
         const { iduser } = req.params;
         console.log(req.params)
-        if (!iduser) {
-            return res.json({ "msg": "error no data", "body": req.body });
-        }
+        if (!iduser) res.render("error");
+
         const folders = await Folder.find({ user: iduser, active: true })
             .populate("contentFolder");
         //.populate("user");
@@ -69,7 +66,7 @@ router.post("/", async(req, res, next) => {
         const { isUser, folderName, type } = req.body;
         let data = { user: "", folderName: "" }
         if (!isUser || !folderName) {
-            return res.json({ "msg": "error no data", "body": req.body });
+            res.render("error");
         } else {
             data["user"] = isUser;
             data["folderName"] = folderName;
@@ -110,13 +107,7 @@ router.put("/addManga/:id", async(req, res, next) => {
         const { id } = req.params;
         const { idMangapi, tittle, img } = req.body;
         console.log("req.params ", id, "req.body", tittle, img)
-        if (!id || !idMangapi || !img || !tittle) {
-            return res.json({
-                "msg": "error no data",
-                "req.params": req.params,
-                "req.body": req.body
-            });
-        }
+        if (!id || !idMangapi || !img || !tittle) res.render("error");
         let manga = await Manga.findOne({ idMangapi, active: true });
         if (!manga) {
             data = {
@@ -154,13 +145,7 @@ router.put("/:id", async(req, res, next) => {
         const { id } = req.params;
         const { folderName } = req.body;
         console.log("req.params ", id, "req.body", folderName)
-        if (!id || !folderName) {
-            return res.json({
-                "msg": "error no data",
-                "req.params": req.params,
-                "req.body": req.body
-            });
-        }
+        if (!id || !folderName) res.render("error");
         const folder = await Folder.findByIdAndUpdate(id, { folderName }, { new: true });
         return res.json({
             "msg": "put manga",
@@ -184,11 +169,7 @@ router.delete("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
         console.log("req.params ", id)
-        if (!id) {
-            return res.json({
-                "msg": "error no data"
-            });
-        }
+        if (!id) res.render("error");
         const fold = await Folder.findById(id);
         if (fold.type != 2) {
             const folder = await Folder.findByIdAndUpdate(id, { active: false }, { new: true })
@@ -219,11 +200,7 @@ router.delete("/deleteAmanga/:id", async(req, res, next) => {
         const { id } = req.params;
         const { idManga } = req.body
         console.log("req.params ", id)
-        if (!id || !idManga) {
-            return res.json({
-                "msg": "error no data"
-            });
-        }
+        if (!id || !idManga) res.render("error");
         const fold = await Folder.findById(id);
         let mangas = fold.manga;
         for (let i = 0; i < mangas.length; i++) {
