@@ -27,9 +27,10 @@ router.post("/signupgoogle", [
 
     try {
         const { email, name, picture: img, idGoogle } = await googleVerify(id_token);
-        const userdb = await User.findOne({ idGoogle });
+        const user = await User.findOne({ idGoogle });
+        console.log(user)
 
-        if (!userdb) {
+        if (!user) {
             const salt = bcryptjs.genSaltSync(10);
             const newPassword = bcryptjs.hashSync('', salt);
             const username = uuidv4() + email.split("@")[0];
@@ -42,8 +43,9 @@ router.post("/signupgoogle", [
                 username,
                 idGoogle
             };
-            const { _id: idUser } = user;
-            req.session.currentUser = user;
+            userdb = await User.create(data);
+            const { _id: idUser } = userdb;
+            req.session.currentUser = userdb;
             axios.post('http://localhost:3000/folder/', {
                 "isUser": idUser,
                 "folderName": "favorites",
