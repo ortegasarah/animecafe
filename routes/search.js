@@ -2,7 +2,7 @@ const router = require("express").Router();
 const axios = require("axios")
 /* GET home page */
 router.get("/", (req, res, next) => {
-    console.log("los query params", req.query)
+    console.log(req.query)
     if (Object.keys(req.query).length) {
         const {
             title
