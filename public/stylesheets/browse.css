@@ -1,30 +1,31 @@
-.genres a{
-    background-color: var(--lilac);
-    padding: 3em;
+.genres a {
     text-align: center;
     font-weight: 800;
-    
+
 }
 
-.genres{
-    margin: 4em;
-
+.genres {
+    padding: 3em;
 }
 
 .genres a:hover {
- background-color: var(--purple);
+    color: var(--purple);
 }
 
 .genres-wrapper {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    background-color: var(--beige);
+    border-bottom: var(--black) 1px solid;
+
 }
 
 .header-browse {
     background-image: url(../images/sailor-moon-eternal-2359235.webp);
-    height: 350px;
+    height: 200px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -34,11 +35,43 @@
     text-align: center;
     color: var(--yellow);
     letter-spacing: 0.3rem;
-    line-height:5;
-    font-size: 6em;
+    line-height: 5;
+    font-size: 4em;
     font-weight: 800;
-
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+@media screen and (min-width: 768px) {
+    .genres {
+        margin: 4em;
+        padding: 3em;
+    }
+
+    .genres-wrapper {
+        flex-direction: row;
+    }
+
+    .header-browse {
+        background-image: url(../images/sailor-moon-eternal-2359235.webp);
+        height: 350px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-bottom: var(--black) 1px solid;
+        font: 1rem "Roboto", Helvetica, Arial, sans-serif;
+        -webkit-text-stroke: 1px var(--black);
+        text-align: center;
+        color: var(--yellow);
+        letter-spacing: 0.3rem;
+        line-height: 5;
+        font-size: 8em;
+        font-weight: 800;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
