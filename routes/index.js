@@ -5,13 +5,13 @@ const axios = require('axios');
 router.get("/", async(req, res, next) => {
 
     try {
-        response_articles = await axios.get('https://api.jikan.moe/v3/manga/1/news');
+        response_articles = await axios.get('https://api.jikan.moe/v3/anime/1/news');
         articles = response_articles.data.articles.slice(0, 6);
-        response_recommendations = await axios.get('https://api.jikan.moe/v3/manga/1/recommendations');
-        recommendations = response_recommendations.data.recommendations.slice(0, 6);
+        response_top = await axios.get('https://api.jikan.moe/v3/top/anime/1');
+        top = response_top.data.top.slice(0, 6);
         data = {
             articles,
-            recommendations
+            top
         };
         res.render("index", data);
     } catch (e) {

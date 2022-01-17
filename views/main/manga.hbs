@@ -25,14 +25,29 @@
         <img class="manga-info" src={{mangainfo.image_url}} />
       </div>
       <div class="wrapper-info">
-        <h1>{{mangainfo.title}}</h1>
+        <h1>{{mangainfo.title_english}}</h1>
+        <h2>by
+          {{#each mangainfo.authors}}
+          {{name}}
+          {{/each}}</h2>
         <p>{{mangainfo.synopsis}}</p>
         <p>Favorites: {{mangainfo.favorites}}</p>
-        <p>Readers' note: {{mangainfo.score}}</p>
-        <p>Genres: </p>
-
+        <p>Readers' note: {{mangainfo.score}}/10</p>
+        {{#if mangainfo.volumes}}
+        <p>Volumes : {{mangainfo.volumes}}</p>
+        {{/if}}
+        <p>Number of episodes: : {{mangainfo.episodes}}</p>
+        <p>Genres:
+          {{#each mangainfo.genres}}
+          {{name}}
+          {{/each}}</p>
       </div>
     </div>
+
+    {{#if mangainfo.trailer_url}}
+    <iframe width="420" height="315" src="{{mangainfo.trailer_url}}">
+    </iframe>
+    {{/if}}
 
     {{!-- REVIEWS --}}
     <section id="reviews">
@@ -51,6 +66,12 @@
                   <h3> {{reviewer.username}}</h3>
                   <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
                     {{reviewer.scores.overall}}</h5>
+                  <p>story: {{reviewer.scores.story}}/10</p>
+                  <p>art: {{reviewer.scores.art}}/10</p>
+                  <p>character: {{reviewer.scores.character}}/10</p>
+                  <p>enjoyment: {{reviewer.scores.enjoyment}}/10</p>
+
+
                   <br>
 
                 </div>

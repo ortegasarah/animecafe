@@ -2,27 +2,43 @@ const router = require("express").Router();
 const Manga = require("../models/Manga.model");
 const axios = require("axios");
 
+/* GET home page */
+router.get("/browse", (req, res, next) => {
+    const genres = [{
+        label: "Action",
+        id: 1
+    }]
+    axios.get(`https://api.jikan.moe/v3/top/anime/1`)
+        .then(responseAxios => {
+            console.log(responseAxios.data)
+            res.render("main/browse", {
+                results: responseAxios.data.results,
+                genres
+            });
+        })
+        .catch(error => {
+            console.log("error")
+            res.render("/");
+        })
 
-router.get("/:id", async(req, res, next) => {
-    try {
-        const {
-            id
-        } = req.params
-
-        const {
-            data: reviews
-        } = await axios.get(`https://api.jikan.moe/v3/manga/${id}/reviews`);
-
-        const {
-            data: mangainfo
-        } = await axios.get(`https://api.jikan.moe/v3/manga/${id}`);
-        console.log("reviews", reviews)
-        res.render("main/manga", { reviews, mangainfo });
-    } catch (e) {
-        console.log("error", e)
-        res.render("error");
-    }
 });
+
+router.get("/genres/:id", (req, res) => {
+    const {
+        id
+    } = req.params;
+    axios.get(`https://api.jikan.moe/v3/genre/anime/${id}/1`)
+    .then(responseAxios => {
+        console.log(responseAxios.data)
+        res.render("main/results", {
+            results: responseAxios.data.results,
+        });
+    })
+    .catch(error => {
+        console.log("error")
+        res.render("/");
+    })
+})
 
 router.get("/getManga/:idMangapi", async(req, res, next) => {
     try {
@@ -87,6 +103,27 @@ router.post("/", async(req, res, next) => {
 
 });
 
+
+router.get("/:id", async(req, res, next) => {
+    try {
+        const {
+            id
+        } = req.params
+
+        const {
+            data: reviews
+        } = await axios.get(`https://api.jikan.moe/v3/anime/${id}/reviews`);
+
+        const {
+            data: mangainfo
+        } = await axios.get(`https://api.jikan.moe/v3/anime/${id}`);
+        console.log("reviews", reviews)
+        res.render("main/manga", { reviews, mangainfo });
+    } catch (e) {
+        console.log("error", e)
+        res.render("error");
+    }
+});
 
 router.put("/:id", async(req, res, next) => {
     try {
