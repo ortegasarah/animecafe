@@ -119,7 +119,7 @@ router.post("/login", [
     const { email, password } = req.body;
 
     try {
-        user = await User.findOne({ email });
+        user = await User.findOne({ email, active: true });
         if (!user) {
             res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
             return;
@@ -142,9 +142,9 @@ router.post("/loginggoogle", [
     const { id_token } = req.body;
     try {
         const { idGoogle } = await googleVerify(id_token);
-        let user = await User.findOne({ idGoogle, google: true });
+        let user = await User.findOne({ idGoogle, google: true, active: true });
         if (!user) {
-            res.render('auth/login', { errorMessage: 'Email is already registered. Try to login' });
+            res.render('auth/login', { errorMessage: 'Email is not registered. signup' });
         } else {
             req.session.currentUser = user;
             res.redirect('/users/user-profile');

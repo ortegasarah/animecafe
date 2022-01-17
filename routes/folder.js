@@ -1,27 +1,27 @@
 const router = require("express").Router();
 const Folder = require("../models/Folder.model");
 const Manga = require("../models/Manga.model");
+const axios = require("axios");
 
 
 router.get("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(req.params)
-        if (!id) res.render("error");
-        const folder = await Folder.findOne({ id, active: true })
-            .populate("contentFolder")
-            .populate("user");
-
-        if (folder) {
-            return res.json({
-                "msg": "get folder",
-                "item": folder
-            });
+        if (req.session.currentUser && id) {
+            //console.log(req.session.currentUser)
+            const folder = await Folder.findOne({ _id: id, active: true })
+                .populate("contentFolder");
+            //.populate("user");
+            console.log(folder)
+            if (folder) {
+                res.render("users/folder-result", { userInSession: req.session.currentUser, folder });
+            } else {
+                res.render("users/folder-result", { userInSession: req.session.currentUser, folder: [] });
+            }
         } else {
-            return res.json({
-                "msg": "not found"
-            });
+            res.render('');
         }
+
     } catch (e) {
         return res.json({
             "msg": "error",
@@ -37,8 +37,8 @@ router.get("/getFolders/:iduser", async(req, res, next) => {
         if (!iduser) res.render("error");
 
         const folders = await Folder.find({ user: iduser, active: true })
-            .populate("contentFolder");
-        //.populate("user");
+            .populate("contentFolder")
+            //.populate("user");
 
         if (folders) {
             return res.json({
@@ -47,7 +47,8 @@ router.get("/getFolders/:iduser", async(req, res, next) => {
             });
         } else {
             return res.json({
-                "msg": "not found"
+                "msg": "not found",
+                "item": []
             });
         }
     } catch (e) {
@@ -76,17 +77,21 @@ router.post("/", async(req, res, next) => {
 
         const folder = await Folder.findOne({ folderName, user: isUser });
         if (!folder) {
-            const manga = Folder.create(data);
+            const new_folder = Folder.create(data);
+            console.log("created a new folder", new_folder, isUser)
+            const folders = await axios.get(`http://localhost:3000/folder/getFolders/${isUser}`);
+            console.log(folders)
+            const contentFolder = folders.data.item;
+            console.log("**************************")
+            res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
         } else {
             return res.json({
                 "msg": "founded a folder"
             });
         }
 
-        return res.json({
-            "msg": "created"
-        });
     } catch (e) {
+        console.log(e)
         return res.json({
             "msg": "error",
             "e": e
