@@ -18,12 +18,12 @@
 
 <body>
   {{> header}}
-  <p>Sort by</p>
+  {{!-- <p>Sort by</p>
   <td><select name="" id="" width="300" style="width: 300px">
       <option id="">A-Z</option>
       <option id="">Z-A</option>
       <option id="">Top rated</option>
-    </select></td>
+    </select></td> --}}
   {{#if results}}
   <section id="results">
     <div class="row p-5">
@@ -34,11 +34,12 @@
 
       </div>
       {{/if}}
-      <h1>Results</h1>
-
-      {{#each results}}
-      {{> cardPartial this }}
-      {{/each}}
+      <div class="row p-5">
+        <h1>Results</h1>
+        {{#each results}}
+        {{> cardPartial this }}
+        {{/each}}
+      </div>
     </div>
     {{/if}}
   </section>

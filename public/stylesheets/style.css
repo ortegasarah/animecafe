@@ -59,6 +59,7 @@ h1 {
 
 .bold {
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .cardLand {
@@ -69,7 +70,7 @@ h1 {
 }
 
 .error404 {
-    background-image: url(../images/landing/404.jpg);
+    background-image: url(../images/404-error.jpg);
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -91,6 +92,18 @@ a:hover {
     text-decoration: none;
 }
 
+.card-body{
+    padding: 1rem 0 !important;
+}
 #results {
     /* padding: 3em; */
+}
+
+
+/* || 404 ERROR */
+.error {
+    letter-spacing: 0.3rem;
+    font-size: 4em;
+    font-weight: 800;
+    text-align: center;
 }
