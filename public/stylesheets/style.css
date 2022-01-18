@@ -28,11 +28,10 @@ body {
 
 
 /* || General styles */
+
 h1 {
     font: 50px "Vollkorn", Helvetica, Arial, sans-serif;
-
 }
-
 
 .buttonLan {
     border-radius: 20px;
@@ -69,6 +68,14 @@ h1 {
     opacity: 0.7;
 }
 
+.error404 {
+    background-image: url(../images/landing/404.jpg);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 /*card partial landing*/
 
@@ -78,7 +85,8 @@ h1 {
     height: 150px;*/
 }
 
-a, a:hover {
+a,
+a:hover {
     color: var(--black);
     text-decoration: none;
 }

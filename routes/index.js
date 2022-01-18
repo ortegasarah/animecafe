@@ -20,5 +20,10 @@ router.get("/", async(req, res, next) => {
 
 });
 
+router.get("/error", async(req, res, next) => {
 
+    res.render("error");
+
+
+});
 module.exports = router;

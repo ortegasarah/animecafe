@@ -102,9 +102,7 @@ router.post("/", async(req, res, next) => {
 
     try {
         const { idMangapi, tittle, img } = req.body;
-        if (!idMangapi || !tittle) {
-            return res.json({ "msg": "error no data", "body": req.body });
-        }
+        if (!idMangapi || !tittle) res.render("error");
 
         const mangadb = await Anime.findOne({ idMangapi });
         if (!mangadb) {
