@@ -5,8 +5,8 @@ const axios = require('axios');
 router.get("/", async(req, res, next) => {
 
     try {
-        response_articles = await axios.get('https://api.jikan.moe/v3/anime/1/news');
-        articles = response_articles.data.articles.slice(0, 6);
+        response_articles = await axios.get('https://api.jikan.moe/v3/top/anime/1/upcoming');
+        articles = response_articles.data.top.slice(0, 6);
         response_top = await axios.get('https://api.jikan.moe/v3/top/anime/1');
         top = response_top.data.top.slice(0, 6);
         data = {
