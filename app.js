@@ -48,7 +48,7 @@ const index = require("./routes/index");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
 const search = require("./routes/search");
-const manga = require("./routes/manga");
+const anime = require("./routes/anime");
 const folder = require("./routes/folder");
 const review = require("./routes/review");
 
@@ -58,7 +58,7 @@ app.use("/", index);
 app.use("/auth", auth);
 app.use("/users", users);
 app.use("/search", search);
-app.use("/manga", manga);
+app.use("/anime", anime);
 app.use("/folder", folder);
 app.use("/review", review);
 

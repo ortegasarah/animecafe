@@ -1,28 +1,73 @@
 const router = require("express").Router();
-const Manga = require("../models/Manga.model");
+const Anime = require("../models/Manga.model");
 const axios = require("axios");
 
+/* GET home page */
+router.get("/browse", (req, res, next) => {
+    const genres = [{
+        label: "Action",
+        id: 1
+    },{
+    label: "Adventure",
+        id: 2
+},{
+    label: "Comedy",
+        id: 4
+},{
+    label: "Fantasy",
+        id: 10
+},{
+    label: "Horror",
+        id: 14
+},{
+    label: "Martial Arts",
+        id: 17
+},{
+    label: "Romance",
+        id: 22
+},{
+    label: "Sci Fi",
+        id: 24
+},{
+    label: "Space",
+        id: 29
+},{
+    label: "Super Power",
+        id: 31
+}
 
-router.get("/:id", async(req, res, next) => {
-    try {
-        const {
-            id
-        } = req.params
+]
+    axios.get(`https://api.jikan.moe/v3/top/anime/1/upcoming`)
+        .then(responseAxios => {
+            console.log(responseAxios.data.top)
+            res.render("main/browse", {
+                results: responseAxios.data.top,
+                genres
+            });
+        })
+        .catch(error => {
+            console.log("error")
+            res.render("/");
+        })
 
-        const {
-            data: reviews
-        } = await axios.get(`https://api.jikan.moe/v3/manga/${id}/reviews`);
-
-        const {
-            data: mangainfo
-        } = await axios.get(`https://api.jikan.moe/v3/manga/${id}`);
-        console.log("reviews", reviews)
-        res.render("main/manga", { reviews, mangainfo });
-    } catch (e) {
-        console.log("error", e)
-        res.render("error");
-    }
 });
+
+router.get("/genres/:id", (req, res) => {
+    const {
+        id
+    } = req.params;
+    axios.get(`https://api.jikan.moe/v3/genre/anime/${id}/1`)
+    .then(responseAxios => {
+        console.log(responseAxios)
+        res.render("main/results", {
+            results: responseAxios.data.anime,
+        });
+    })
+    .catch(error => {
+        console.log("error")
+        res.render("/");
+    })
+})
 
 router.get("/getManga/:idMangapi", async(req, res, next) => {
     try {
@@ -31,7 +76,7 @@ router.get("/getManga/:idMangapi", async(req, res, next) => {
         if (!idMangapi) {
             return res.json({ "msg": "error no data" });
         }
-        const mangadb = await Manga.findOne({ idMangapi, active: true });
+        const mangadb = await Anime.findOne({ idMangapi, active: true });
 
         if (mangadb) {
             return res.json({
@@ -61,14 +106,14 @@ router.post("/", async(req, res, next) => {
             return res.json({ "msg": "error no data", "body": req.body });
         }
 
-        const mangadb = await Manga.findOne({ idMangapi });
+        const mangadb = await Anime.findOne({ idMangapi });
         if (!mangadb) {
             data = {
                 idMangapi,
                 tittle,
                 img
             };
-            const manga = await Manga.create(data);
+            const manga = await Anime.create(data);
         } else {
             console.log("founded a manga");
         }
@@ -88,6 +133,27 @@ router.post("/", async(req, res, next) => {
 });
 
 
+router.get("/:id", async(req, res, next) => {
+    try {
+        const {
+            id
+        } = req.params
+
+        const {
+            data: reviews
+        } = await axios.get(`https://api.jikan.moe/v3/anime/${id}/reviews`);
+
+        const {
+            data: mangainfo
+        } = await axios.get(`https://api.jikan.moe/v3/anime/${id}`);
+        console.log("reviews", reviews)
+        res.render("main/anime", { reviews, mangainfo });
+    } catch (e) {
+        console.log("error", e)
+        res.render("error");
+    }
+});
+
 router.put("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
@@ -98,7 +164,7 @@ router.put("/:id", async(req, res, next) => {
                 "msg": "error no data"
             });
         }
-        const mangadb = await Manga.findByIdAndUpdate(id, { tittle, img }, { new: true })
+        const mangadb = await Anime.findByIdAndUpdate(id, { tittle, img }, { new: true })
         if (mangadb) {
             return res.json({
                 "msg": "put manga",
@@ -124,7 +190,7 @@ router.delete("/:id", async(req, res, next) => {
                 "msg": "error no data"
             });
         }
-        const mangadb = await Manga.findByIdAndUpdate(id, { active: false }, { new: true })
+        const mangadb = await Anime.findByIdAndUpdate(id, { active: false }, { new: true })
         if (mangadb) {
             return res.json({
                 "msg": "delete manga",
