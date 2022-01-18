@@ -15,25 +15,33 @@
   <link rel="stylesheet" href="/stylesheets/footer.css" />
 
 </head>
+
 <body>
   {{> header}}
-<p>Sort by</p>
-    <td><select name="" id="" width="300" style="width: 300px">
+  <p>Sort by</p>
+  <td><select name="" id="" width="300" style="width: 300px">
       <option id="">A-Z</option>
       <option id="">Z-A</option>
       <option id="">Top rated</option>
     </select></td>
   {{#if results}}
-<section id="results">
-  <div class="row p-5">
-  <h1>Results</h1>
+  <section id="results">
+    <div class="row p-5">
+      {{#if headerGenre.action}}
+      <div class="" style="background-image: url(../images/sailor-moon-eternal-2359235.webp)">
+        <span>{{headerGenre.label}}</span>
+        {{else if headerGenre.adventure}}
 
-  {{#each results}}
-  {{> cardPartial this }}
-  {{/each}}
-</div>
-  {{/if}}
-</section>
+      </div>
+      {{/if}}
+      <h1>Results</h1>
+
+      {{#each results}}
+      {{> cardPartial this }}
+      {{/each}}
+    </div>
+    {{/if}}
+  </section>
   {{> footer}}
 
   <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -46,11 +54,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
     crossorigin="anonymous"></script>
-{{!-- 
-        <script> 
-      const data = "{"results":"{{results}}"}"
-      console.log(typeof data)
-    </script> --}}
+  {{!--
+  <script>
+    const data = "{"results":"{ { results } } "}"
+    console.log(typeof data)
+  </script> --}}
 </body>
 
 </html>
