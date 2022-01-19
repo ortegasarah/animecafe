@@ -50,33 +50,12 @@
 
             </form>
 
-              <form action="/auth/logout" method="POST"  class="d-grid gap-2 pt-4">
-                <button type="submit" class="btn btn-outline-secondary">Log out</button>
-                <button type="button" class="btn btn-outline-danger " data-bs-target="#mi-modal-1" data-bs-toggle="modal">Delete account</button>
-              </form>
+            <form action="/auth/logout" method="POST"  class="d-grid gap-2 pt-4">
+              <button type="submit" class="btn btn-outline-secondary">Log out</button>
+              <button type="button" class="btn btn-outline-danger " data-bs-target="#mi-modal-1" data-bs-toggle="modal">Delete account</button>
+            </form>
             
-            <div class="modal fade" id="mi-modal-1" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-1">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Delete your account</h5>
-                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                  </div>
-                  <form action="/users/delete/{{this._id}}" method="POST">
-                    <div class="modal-body">
-                      <p>If you delete your account, you will not be able to recover your boards. 
-                        All data in your animekafe account will be deleted.
-                      </p>
-                    </div>
 
-                    <div class="modal-footer">
-                      <button type="submit"  class="btn btn-danger">Delete</button>
-                    </div>
-
-                  </form>
-                </div>
-              </div>
-				    </div>
 
             {{#if errorMessage}}
                 <p class="error">{{errorMessage}}</p>
@@ -84,6 +63,31 @@
           </div>
         </div>
       </div>
+
+
+      <div class="modal fade" id="mi-modal-1" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete your account</h5>
+              <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form action="/users/delete/{{this._id}}" method="POST">
+              <div class="modal-body">
+                <p>If you delete your account, you will not be able to recover your boards. 
+                  All data in your animekafe account will be deleted.
+                </p>
+              </div>
+
+              <div class="modal-footer">
+                <button type="submit"  class="btn btn-danger">Delete</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
 
       {{> footer}}
       

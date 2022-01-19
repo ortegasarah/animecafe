@@ -56,6 +56,7 @@ router.post('/', async(req, res, next) => {
         user.username = username;
         user.name = name;
         await user.save();
+        req.session.currentUser = user;
         res.render('users/profile', { user_s: user });
 
 

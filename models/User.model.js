@@ -21,7 +21,7 @@ const userSchema = new Schema({
     },
     img: {
         type: String,
-        default: ''
+        default: 'https://res.cloudinary.com/dnywgpjkn/image/upload/v1642564314/notFound_ryzezw.jpg'
     },
     google: {
         type: Boolean,
