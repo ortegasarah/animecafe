@@ -7,7 +7,7 @@ async function uploadFile(user, archivo) {
         console.log(user.img)
         if (user.img) {
             console.log("mi usuario tiene una imagen")
-            if (!user.img.includes('google')) {
+            if (!user.img.includes('google') || !user.img.includes('notFound_wpeppw.jpg')) {
                 console.log("eliminando imagen")
                 const nombreArr = user.img.split('/');
                 const nombre = nombreArr[nombreArr.length - 1];
