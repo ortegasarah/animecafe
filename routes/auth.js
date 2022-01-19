@@ -1,13 +1,15 @@
 const router = require("express").Router();
 const bcryptjs = require("bcryptjs");
-const { googleVerify } = require("../helpers/google-verify");
-const User = require("../models/User.model");
-const { check } = require('express-validator');
-const { validate, validatePasswords } = require("../middlewares/validate");
 const axios = require("axios");
 const { v4: uuidv4 } = require('uuid');
-const sgMail = require('@sendgrid/mail');
+const { check } = require('express-validator');
 
+const User = require("../models/User.model");
+
+const { googleVerify } = require("../helpers/google-verify");
+const { sendEmail } = require("../helpers/send-email");
+const { validate } = require("../middlewares/validate");
+const { validatePassword } = require("../helpers/validate-password");
 
 /**
  * #################################### SIGNUP ####################################################
@@ -25,9 +27,10 @@ router.post("/signupgoogle", [
 
     try {
         const { email, name, picture: img, idGoogle } = await googleVerify(id_token);
-        const userdb = await User.findOne({ idGoogle });
+        const user = await User.findOne({ idGoogle });
+        console.log(user)
 
-        if (!userdb) {
+        if (!user) {
             const salt = bcryptjs.genSaltSync(10);
             const newPassword = bcryptjs.hashSync('', salt);
             const username = uuidv4() + email.split("@")[0];
@@ -40,8 +43,9 @@ router.post("/signupgoogle", [
                 username,
                 idGoogle
             };
-            const { _id: idUser } = user;
-            req.session.currentUser = user;
+            userdb = await User.create(data);
+            const { _id: idUser } = userdb;
+            req.session.currentUser = userdb;
             axios.post('http://localhost:3000/folder/', {
                 "isUser": idUser,
                 "folderName": "favorites",
@@ -63,7 +67,7 @@ router.post("/signup", [
     check('email', 'email is required').not().isEmpty(),
     check('email', 'email invalid').isEmail(),
     check('name', 'name is required').not().isEmpty(),
-    validatePasswords, validate
+    validate
 ], async(req, res, next) => {
     try {
         const { name, email, password } = req.body;
@@ -115,7 +119,7 @@ router.post("/login", [
     const { email, password } = req.body;
 
     try {
-        user = await User.findOne({ email });
+        user = await User.findOne({ email, active: true });
         if (!user) {
             res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
             return;
@@ -138,9 +142,9 @@ router.post("/loginggoogle", [
     const { id_token } = req.body;
     try {
         const { idGoogle } = await googleVerify(id_token);
-        let user = await User.findOne({ idGoogle, google: true });
+        let user = await User.findOne({ idGoogle, google: true, active: true });
         if (!user) {
-            res.render('auth/login', { errorMessage: 'Email is already registered. Try to login' });
+            res.render('auth/login', { errorMessage: 'Email is not registered. signup' });
         } else {
             req.session.currentUser = user;
             res.redirect('/users/user-profile');
@@ -178,25 +182,15 @@ router.post("/forgot_password", async(req, res, next) => {
     try {
         const { email } = req.body;
         if (!email) {
-            return res.json({
-                "msg": "error no data"
-            });
+            res.render("error");
         }
         const user = await User.findOne({ email });
         console.log(user)
         if (user) {
-            sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-            const msg = {
-                to: email,
-                from: 'sergio_eduardosandoval@outlook.es',
-                templateId: 'd-eb14ae8bf8924318a727ec3390616d61',
-                dynamic_template_data: {
-                    url: `http://localhost:3000/auth/reset_password/${user.id}`
-                },
-            };
-            sgMail.send(msg);
+            data = { url: `http://localhost:3000/auth/reset_password/${user.id}` }
+            sendEmail(email, data, 'd-eb14ae8bf8924318a727ec3390616d61')
         }
-        res.render('auth/forgotPassword', { errorMessage: 'if we have your email, we send you an email' });
+        res.render('auth/forgotPassword', { errorMessage: 'We send you an email' });
 
     } catch (err) {
         return res.json({
@@ -204,12 +198,6 @@ router.post("/forgot_password", async(req, res, next) => {
             "err": err
         });
     }
-
-
-
-
-
-
 });
 
 
@@ -218,7 +206,7 @@ router.get("/reset_password/:id", async(req, res, next) => {
     const user = await User.findById(id);
     if (user) {
         req.session.idUser = id;
-        res.render("auth/resetPassword", { id });
+        res.render("auth/resetPassword");
     } else {
         res.render("auth/resetPassword", { errorMessage: 'sorry we have a problem' });
     }
@@ -228,14 +216,22 @@ router.get("/reset_password/:id", async(req, res, next) => {
 
 router.post("/reset_password", async(req, res, next) => {
     try {
-        const { password } = req.body;
-        const { idUser } = req.session
-        const user = await User.findById(idUser);
-        const salt = bcryptjs.genSaltSync(10);
-        const newPassword = bcryptjs.hashSync(password, salt);
-        user.password = newPassword
-        await user.save();
-        res.render("auth/login");
+        const { password, confirmpassword } = req.body;
+
+        const { status, msg } = validatePassword(password, confirmpassword)
+        if (status == 200) {
+            const { idUser } = req.session;
+            const user = await User.findById(idUser);
+            const salt = bcryptjs.genSaltSync(10);
+            const newPassword = bcryptjs.hashSync(password, salt);
+            user.password = newPassword;
+            await user.save();
+            res.render("auth/login");
+        } else {
+            res.render("auth/resetPassword", { errorMessage: msg });
+        }
+
+
     } catch (err) {
         res.render("auth/reset_password", { errorMessage: 'sorry we have a problem' });
     }
