@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Vollkorn:wght@500;700&display=swap');
 
+@import url("https://use.typekit.net/bpd8gfy.css");
 /* 
 font-family: 'Roboto', sans-serif;
-font-family: 'Vollkorn', serif; */
+font-family: 'Vollkorn', serif; 
+font-family: p22-mackinac-pro, serif;*/
 
 :root {
     /* Palette */
     --white: #fff;
     --black: #121212;
     --yellow: rgb(225, 255, 161);
-    --lilac: #E8E8F1;    
+    --lilac: #E8E8F1;
     --purple: #8b8bd4;
     --beige: #f2f2f2;
 }
@@ -30,10 +32,12 @@ body {
 /* || General styles */
 
 h1 {
-    font: 50px "Vollkorn", Helvetica, Arial, sans-serif;
+    font: 30px "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.buttonLan {
+/* .buttonLan {
     border-radius: 20px;
     width: 30%;
     border-style: solid;
@@ -46,7 +50,7 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     color: var(--black);
-}
+} */
 
 .landingImg {
     background-image: url(../images/yashahime-landpage.jpeg);
@@ -55,6 +59,8 @@ h1 {
     background-repeat: no-repeat;
     background-size: cover;
     border-bottom: var(--black) 1px solid;
+    align-self: center;
+
 }
 
 .bold {
@@ -62,11 +68,20 @@ h1 {
     text-transform: uppercase;
 }
 
+.row {
+    margin: 0 !important;
+}
+
 .cardLand {
-    margin-top: 20%;
-    background-color: #E4E3E3;
+    margin: 3rem;
+    background-color: var(--lilac);
     border-radius: 10px;
-    opacity: 0.7;
+    opacity: 0.9;
+    text-align: center;
+}
+
+main .container-fluid {
+    padding: 0 !important;
 }
 
 .error404 {
@@ -92,13 +107,57 @@ a:hover {
     text-decoration: none;
 }
 
-.card-body{
+.card-body {
     padding: 1rem 0 !important;
 }
-#results {
-    /* padding: 3em; */
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0;
 }
 
+
+.save-icon {
+    display: flex;
+}
+
+.landing-anime {
+    padding: 3rem;
+}
+
+.button-landing {
+    border-radius: 30px;
+    text-align: center;
+    width: fit-content;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0.8em ;
+    border: none;
+    background-color: white;
+    border: 2px var(--purple) solid;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 5% auto;
+}
+
+
+.button-landing a {
+    margin: 50px 13px;
+    color: var(--purple);
+
+}
+
+.button-landing:hover {
+    background-color: black;
+    border: 2px black solid;
+
+}
+
+.button-landing:hover a {
+    color: white;
+
+}
 
 /* || 404 ERROR */
 .error {
@@ -106,4 +165,19 @@ a:hover {
     font-size: 4em;
     font-weight: 800;
     text-align: center;
+}
+
+/* 
+img.card-img-top {
+    height: auto;
+} */
+
+@media screen and (min-width: 780px) {
+    h1 {
+        font: 50px "Roboto", Helvetica, Arial, sans-serif;
+    }
+
+    .card-img-top {
+        height: 400px;
+    }
 }

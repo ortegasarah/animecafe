@@ -310,6 +310,10 @@ nav a {
         margin-bottom: 0;
     }
 
+    .logo-big :hover {
+            fill: red;
+    }
+
     .nav-toggle-label {
         display: none;
     }
