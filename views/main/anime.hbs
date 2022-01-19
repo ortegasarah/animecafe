@@ -30,7 +30,6 @@
         {{else}}
         <h1>{{mangainfo.title}}</h1>
         {{/if}}
-
         <p>{{mangainfo.synopsis}}</p>
         <h1>Volume Info</h1>
         <p>Favorites: {{mangainfo.favorites}}</p>
@@ -82,10 +81,14 @@
             </div>
             <div class="review-text module line-clamp" style="max-width: 800px">
               {{content}}
+
+            </div>
+
               <br>
               <br>
             </div>
             {{!-- <input type="checkbox" id="btn-modal">
+
             <label for="btn-modal" class="lbl-modal">Read More</label>
             <div class="modal">
               <div class="container">
@@ -99,8 +102,6 @@
           </div>
         </div>
       </div>
-
-
       {{/each}}
       {{else}}
       <p class="">There is no review yet! Be first to share your opinion on this manga!</p>
