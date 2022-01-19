@@ -71,6 +71,7 @@
 }
 
 
+
 .scores {
     display: flex;
 	flex-direction: row;
@@ -78,6 +79,9 @@
     font-weight: 400;
     font-size: 0.9em;
 }
+
+/* || MODAL REVIEWS*/
+
 
  .anime-info td{
 	border: 2px var(--black) solid;
@@ -174,7 +178,7 @@
 	.container {
 		width: 95%;
 	}
-} 
+}  
 
 
 /* ADD REVIEW */
