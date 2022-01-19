@@ -86,7 +86,9 @@
    function handleCredentialResponse(response) {
     console.log(response.credential)
     const data = { id_token: response.credential };
-    const url = 'http://localhost:3000/auth/signupgoogle'
+    var url = ( window.location.hostname.includes('localhost'))
+                    ? 'http://localhost:3000/auth/signupgoogle'
+                    : 'https://mangakafe.herokuapp.com/auth/signupgoogle'
 
     fetch(url, {
             method: 'POST',

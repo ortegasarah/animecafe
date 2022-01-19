@@ -79,7 +79,7 @@ router.post("/", async(req, res, next) => {
         if (!folder) {
             const new_folder = Folder.create(data);
             //console.log("created a new folder", new_folder, isUser)
-            const folders = await axios.get(`http://localhost:3000/folder/getFolders/${isUser}`);
+            const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${isUser}`);
             //console.log(folders)
             const contentFolder = folders.data.item;
             res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
@@ -150,7 +150,7 @@ router.post("/update/:id", async(req, res, next) => {
         const folder = await Folder.findByIdAndUpdate(id, { folderName }, { new: true })
 
 
-        const folders = await axios.get(`http://localhost:3000/folder/getFolders/${isUser}`);
+        const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${isUser}`);
         const contentFolder = folders.data.item;
         res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
 
@@ -177,7 +177,7 @@ router.post("/delete/:id", async(req, res, next) => {
             console.log("folder deleted", folder)
         } else { console.log("cant eliminate this folder "); }
 
-        const folders = await axios.get(`http://localhost:3000/folder/getFolders/${isUser}`);
+        const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${isUser}`);
         const contentFolder = folders.data.item;
         res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
 
