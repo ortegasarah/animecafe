@@ -71,8 +71,41 @@
 }
 
 
+
+.scores {
+    display: flex;
+	flex-direction: row;
+	text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
 /* || MODAL REVIEWS*/
 
+
+ .anime-info td{
+	border: 2px var(--black) solid;
+	padding:1.8em;
+}
+.anime-trailer{
+	display: flex;
+	flex-direction: column;
+}
+
+.anime-trailer iframe {
+	width: 100%;
+	height: 300px;
+}
+.tbody-title{
+    font-weight: 700;
+	display: inline;
+}
+#review .scores td{
+    padding: 0.8em;
+}
+.scores p{
+	text-transform: uppercase;
+}
 
 .modal {
 	width: 100%;
@@ -198,8 +231,15 @@
 		align-items: flex-start;
 	}
 
-
-
+	.anime-trailer{
+		padding-top: 3em;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	.anime-trailer iframe {
+		height: 500px;
+	}
 	.wrapper-img {
 		padding-right: 4rem;
 	}

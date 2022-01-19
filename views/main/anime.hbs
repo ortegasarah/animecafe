@@ -31,23 +31,46 @@
         <h1>{{mangainfo.title}}</h1>
         {{/if}}
         <p>{{mangainfo.synopsis}}</p>
-        <h1>Volume Info</h1>
-        <p>Favorites: {{mangainfo.favorites}}</p>
-        <p>Readers' note: {{mangainfo.score}}/10</p>
-        {{#if mangainfo.volumes}}
-        <p>Volumes : {{mangainfo.volumes}}</p>
-        {{/if}}
-        <p>Number of episodes: : {{mangainfo.episodes}}</p>
-        <p>Genres:
-          {{#each mangainfo.genres}}
-          {{name}}
-          {{/each}}</p>
+        <h1>Anime Info</h1>
+        <table class="scores anime-info">
+          <tr>
+            <td>
+              <p class="tbody-title">Favorites:</p> {{mangainfo.favorites}}
+            </td>
+            <td>
+              <p class="tbody-title">Score:</p> {{mangainfo.score}}/10
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="tbody-title">Number of episodes:</p> {{mangainfo.episodes}}
+            </td>
+            <td>
+              <p class="tbody-title">Rating: </p>{{mangainfo.rating}}/10
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              <p class="tbody-title">Genres:</p>
+              {{#each mangainfo.genres}}
+              {{name}}
+              {{/each}}
+            </td>
+            <td>
+              <p class="tbody-title">Status :</p> {{mangainfo.status}}
+            </td>
+          </tr>
+        </table>
+
       </div>
     </div>
     {{#if mangainfo.trailer_url}}
-    <h1>Watch the trailer!</h1>
-    <iframe width="560" height="315" src="{{mangainfo.trailer_url}}">
-    </iframe>
+    <div class="anime-trailer">
+      <h1>Watch the trailer</h1>
+      <iframe width="560" height="315" src="{{mangainfo.trailer_url}}">
+      </iframe>
+    </div>
     {{/if}}
   </section>
 
@@ -69,13 +92,16 @@
                 <h3> {{reviewer.username}}</h3>
                 <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
                   {{reviewer.scores.overall}}</h5>
-                <p>story: {{reviewer.scores.story}}/10</p>
-                <p>art: {{reviewer.scores.art}}/10</p>
-                <p>character: {{reviewer.scores.character}}/10</p>
-                <p>enjoyment: {{reviewer.scores.enjoyment}}/10</p>
-
-
-                <br>
+                <table class="scores">
+                  <tr>
+                    <td>story: {{reviewer.scores.story}}/10</td>
+                    <td>animation: {{reviewer.scores.animation}}/10</td>
+                  </tr>
+                  <tr>
+                    <td>character: {{reviewer.scores.character}}/10</td>
+                    <td>enjoyment: {{reviewer.scores.enjoyment}}/10</td>
+                  </tr>
+                </table>
 
               </div>
             </div>

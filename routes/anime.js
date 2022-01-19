@@ -167,6 +167,7 @@ router.get("/:id", async (req, res, next) => {
         const {
             data: reviews
         } = await axios.get(`https://api.jikan.moe/v3/anime/${id}/reviews`);
+        // reviews = reviews.data.slice(0, 4);
 
         const {
             data: mangainfo

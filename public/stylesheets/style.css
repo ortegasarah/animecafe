@@ -35,6 +35,7 @@ h1 {
     font: 30px "Roboto", Helvetica, Arial, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
+    padding-top: 1em;
 }
 
 /* .buttonLan {
@@ -176,7 +177,7 @@ img.card-img-top {
     h1 {
         font: 50px "Roboto", Helvetica, Arial, sans-serif;
         font-weight: bold;
-
+        padding-top: 0;
     }
 
     .card-img-top {
