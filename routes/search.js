@@ -12,7 +12,8 @@ router.get("/", (req, res, next) => {
             .then(responseAxios => {
                 console.log(responseAxios.data)
                 res.render("main/results", {
-                    results: responseAxios.data.results
+                    results: responseAxios.data.results,
+                    userInSession: req.session.currentUser
                 });
             })
             .catch(error => {

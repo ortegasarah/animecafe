@@ -15,19 +15,22 @@
 </head>
 
 <body>
-    {{> header}}
+    {{> header user = userInSession}}
 
     <div class="container-fluid">
         <a href="/anime/41911">
         <div class="row landingImg justify-content-end">
-            <div class="col-12 col-md-4 mr-5">
+            <div class="col-12 col-md-4 offset-md-8 mr-5">
                 <div class="cardLand p-4">
-                    <h4 class="bold" style="font-size: 25px;"> YASHAHIME:  </h4>
-                    <h4 class="bold" style="font-size: 25px;"> PRINCESS HALF-DEMON</h4>
-                    <p class="pt-2" style="font-size: 20px;">The daughters of Sesshomaru and Inuyasha set out on a journey transcending time!</p>
-                    <div class=" row justify-content-center pt-2">
-                        <a type="buton" href="/anime/41911" class="buttonLan "> Discover</a>
+                    <h4 class="bold text-light" style="font-size: 25px;"> YASHAHIME:  </h4>
+                    <h4 class="bold text-light" style="font-size: 25px;"> PRINCESS HALF-DEMON</h4>
+                    <div style=" background-color: #2E2E2E;">
+                        <p class="pt-2 text-light text-center" style="font-size: 20px; padding:5px">The daughters of Sesshomaru and Inuyasha set out on a journey transcending time!</p>
+                        <!--<div class=" row justify-content-center pt-2">
+                            <a type="buton" href="/anime/41911" class="buttonLan "> Discover</a>
+                        </div>-->
                     </div>
+
 
                 </div>
             </div>

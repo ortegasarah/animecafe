@@ -26,10 +26,16 @@
     <nav>
       <ul>
         <li><a href="/anime/browse">Browse</a></li>
-        <li class="login-btn"><a href="/auth/login">Log In</a></li>
-        <li class="sign-btn"><a href="/auth/signup">Sign in</a></li>
+        {{#if user}}
+          <li style=" height: 100px;width: 100px;"> 
+            <a href="/users/user-profile"><img src="{{user.img}}" alt="" style="height: 100%;width: 100%; border-radius: 50%;"></a>
+          </li>
+        {{else}}
+          <li class="login-btn"><a href="/auth/login">Log In</a></li>
+          <li class="sign-btn"><a href="/auth/signup">Sign in</a></li>
+        {{/if}}
       </ul>
     </nav>
-    
+
   </div>
 </header>

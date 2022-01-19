@@ -78,11 +78,10 @@ router.post("/", async(req, res, next) => {
         const folder = await Folder.findOne({ folderName, user: isUser });
         if (!folder) {
             const new_folder = Folder.create(data);
-            console.log("created a new folder", new_folder, isUser)
+            //console.log("created a new folder", new_folder, isUser)
             const folders = await axios.get(`http://localhost:3000/folder/getFolders/${isUser}`);
-            console.log(folders)
+            //console.log(folders)
             const contentFolder = folders.data.item;
-            console.log("**************************")
             res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
         } else {
             return res.json({
@@ -141,21 +140,20 @@ router.put("/addManga/:id", async(req, res, next) => {
 });
 
 
-router.put("/:id", async(req, res, next) => {
-    /**
-     * params id: folder
-     * summary: update tittle folder
-     */
+router.post("/update/:id", async(req, res, next) => {
     try {
+        console.log("updating")
         const { id } = req.params;
         const { folderName } = req.body;
-        console.log("req.params ", id, "req.body", folderName)
+        const { _id: isUser } = req.session.currentUser
         if (!id || !folderName) res.render("error");
-        const folder = await Folder.findByIdAndUpdate(id, { folderName }, { new: true });
-        return res.json({
-            "msg": "put manga",
-            "item": folder
-        });
+        const folder = await Folder.findByIdAndUpdate(id, { folderName }, { new: true })
+
+
+        const folders = await axios.get(`http://localhost:3000/folder/getFolders/${isUser}`);
+        const contentFolder = folders.data.item;
+        res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
+
     } catch (e) {
         return res.json({
             "msg": "error",
@@ -166,27 +164,23 @@ router.put("/:id", async(req, res, next) => {
 
 
 
-router.delete("/:id", async(req, res, next) => {
-    /**
-     * params id: folder
-     * summary: update active folder
-     */
+router.post("/delete/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
-        console.log("req.params ", id)
-        if (!id) res.render("error");
+        const { _id: isUser } = req.session.currentUser
+
+        if (!id || !isUser) res.render("error");
         const fold = await Folder.findById(id);
+        console.log("fold: ", fold)
         if (fold.type != 2) {
-            const folder = await Folder.findByIdAndUpdate(id, { active: false }, { new: true })
-            return res.json({
-                "msg": "delete folder",
-                "item": folder
-            });
-        } else {
-            return res.json({
-                "msg": "cant eliminate this folder "
-            });
-        }
+            const folder = await Folder.findByIdAndUpdate(id, { active: false })
+            console.log("folder deleted", folder)
+        } else { console.log("cant eliminate this folder "); }
+
+        const folders = await axios.get(`http://localhost:3000/folder/getFolders/${isUser}`);
+        const contentFolder = folders.data.item;
+        res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
+
     } catch (e) {
         return res.json({
             "msg": "error",

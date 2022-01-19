@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
+  <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,18 +10,19 @@
       <link rel="stylesheet" href="/stylesheets/style.css" />
       <link rel="stylesheet" href="/stylesheets/footer.css" />
       <link rel="stylesheet" href="/stylesheets/header.css" />
-   </head>
+  </head>
 
    <body>
+     <!-- {{> header user = userInSession}}-->
       <div class="container-fluid " style="background-color: #F4F3F0; height: 100vh;">
         <div class="row">
           <div class="col-12 col-lg-4 offset-lg-4 pt-1 align-self-center "  >
-            <h3 class="pb-2 pt-2">Profile</h3>
+            <h3 class="pb-3 pt-2">Profile</h3>
             <form method="POST" action="/users/" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-5 " style="">
                   <div class="cat" >
-                    <img src="{{this.img}}" class="img-profile" alt="">
+                    <img src="{{user_s.img}}" class="img-profile" alt="">
                   </div>
                 </div>
                 <div class="col-6 offset-1" style=" display: flex; justify-content: start;align-items: center;">
@@ -29,28 +30,30 @@
                 <input type="file" name ="archivo" id="fileImg" accept=".jpg, .jpeg, .png">
                 </div>
               </div>
-              <div class="mb-3 pt-3">
+              <div class="mb-3 pt-5">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control inputAuth" id="name" name="name" value={{this.name}} required>
+                <input type="text" class="form-control inputAuth" id="name" name="name" value={{user_s.name}} required>
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control inputAuth" id="email" aria-describedby="emailHelp" name="email"  value={{this.email}} required>
+                <input type="email" class="form-control inputAuth" id="email" aria-describedby="emailHelp" name="email"  value={{user_s.email}} required>
               </div>
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control inputAuth" id="username" name="username"  value={{this.username}} required>
+                <input type="text" class="form-control inputAuth" id="username" name="username"  value={{user_s.username}} required>
               </div>
-              <input type="text" style="display: none;" name="id"  value={{this._id}}>
-              <div class="endDiv ">
-                <button type="submit" class="button-block-red" >SAVE </button>
+              <input type="text" style="display: none;" name="id"  value={{user_s._id}}>
+              <div class="endDiv pb-3 ">
+                <a type="button" class="button-block-dark" href="http://localhost:3000/users/user-profile">CANCEL</a>
+                <button type="submit" class="button-block-blue" >SAVE </button>
               </div>
 
             </form>
 
-            <div class="d-grid gap-2 pt-2">
-              <button type="button" class="btn btn-outline-danger" data-bs-target="#mi-modal-1" data-bs-toggle="modal">Delete account</button>
-            </div>
+              <form action="/auth/logout" method="POST"  class="d-grid gap-2 pt-4">
+                <button type="submit" class="btn btn-outline-secondary">Log out</button>
+                <button type="button" class="btn btn-outline-danger " data-bs-target="#mi-modal-1" data-bs-toggle="modal">Delete account</button>
+              </form>
             
             <div class="modal fade" id="mi-modal-1" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-1">
               <div class="modal-dialog">
@@ -74,6 +77,7 @@
                 </div>
               </div>
 				    </div>
+
             {{#if errorMessage}}
                 <p class="error">{{errorMessage}}</p>
             {{/if}}
@@ -82,7 +86,7 @@
       </div>
 
       {{> footer}}
-      <script src="https://accounts.google.com/gsi/client" async defer></script>
+      
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>

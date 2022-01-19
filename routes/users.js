@@ -28,7 +28,7 @@ router.get("/profile/:id", async(req, res, next) => {
         if (!id) res.render("error");
         const user = await User.findById(id);
         console.log(user);
-        res.render('users/profile', user);
+        res.render('users/profile', { user_s: user });
     } catch (e) {
         console.log(e);
     }
@@ -45,7 +45,7 @@ router.post('/', async(req, res, next) => {
         if (userEmail && userEmail._id != id) {
             res.render('users/profile', { errorMessage: 'Email is already registered' });
         } else if (userName && userName._id != id) {
-            res.render('users/profile', { errorMessage: 'username is already registered ' });
+            res.render('users/profile', { errorMessage: 'username is already registered' });
         }
         const user = await User.findById(id);
         if (req.files) {
@@ -56,7 +56,9 @@ router.post('/', async(req, res, next) => {
         user.username = username;
         user.name = name;
         await user.save();
-        res.render('users/profile', user);
+        res.render('users/profile', { user_s: user });
+
+
     } catch (e) {
         console.log(e);
         res.render('users/profile', { errorMessage: 'Error' });
