@@ -175,6 +175,8 @@ img.card-img-top {
 @media screen and (min-width: 780px) {
     h1 {
         font: 50px "Roboto", Helvetica, Arial, sans-serif;
+        font-weight: bold;
+
     }
 
     .card-img-top {
