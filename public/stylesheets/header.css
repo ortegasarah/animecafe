@@ -2,7 +2,6 @@ header {
     text-align: center;
     padding: 1rem 2rem;
     background-color: var(--white);
-    width: 100vw;
     border-bottom: var(--black) 1px solid;
 }
 
@@ -227,7 +226,6 @@ nav a {
 }
 
 
-
 /* || BIG SCREEN 
 @media screen and (min-width: 768px) {
     .header {
@@ -279,33 +277,28 @@ nav a {
 
 
 /* || LAPTOP */
+
 @media screen and (min-device-width: 1024px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     .header {
         flex-direction: row;
     }
-
     .img-content {
         display: block;
         padding: 1rem 0;
     }
-
     .logo-mobile {
         display: none;
     }
-
     .logo-big {
         display: flex;
         margin-bottom: 0;
     }
-
     .logo-big :hover {
-            fill: red;
+        fill: red;
     }
-
     .nav-toggle-label {
         display: none;
     }
-
     nav {
         position: relative;
         text-align: left;
@@ -315,26 +308,22 @@ nav a {
         top: initial;
         left: initial;
     }
-
     nav ul {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-                padding: 0;
+        padding: 0;
         flex-direction: row;
     }
-
     nav li {
         margin-left: 3em;
         margin-bottom: 0;
         color: var(--black);
     }
-
     nav a {
         opacity: 1;
         position: relative;
     }
-
     .search_box {
         width: 500px;
     }
@@ -342,26 +331,22 @@ nav a {
 
 
 /* || TABLET */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
     .header {
         flex-direction: column;
     }
-
     .img-content {
         display: block;
         padding: 1rem 0;
     }
-
     .logo-mobile {
         display: none;
     }
-
     .logo-big {
         display: flex;
         margin: 2em 0;
     }
-
     /* .nav-toggle-label {
         display: none;
     }
@@ -393,7 +378,6 @@ nav a {
         opacity: 1;
         position: relative;
     } */
-
     .search_box {
         width: 500px;
     }
