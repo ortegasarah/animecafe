@@ -74,6 +74,9 @@ h1 {
 }
 
 .cardLand {
+
+    margin-top: 20%;
+    border-radius: 10px;
     margin: 3rem;
     background-color: var(--lilac);
     border-radius: 10px;

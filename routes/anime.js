@@ -35,6 +35,7 @@ router.get("/browse", (req, res, next) => {
         label: "Super Power",
         id: 31
     }]
+
     axios.get(`https://api.jikan.moe/v3/top/anime/1/upcoming`)
         .then(responseAxios => {
             console.log(responseAxios.data.top)
@@ -175,7 +176,8 @@ router.get("/:id", async (req, res, next) => {
         console.log("reviews", reviews)
         res.render("main/anime", {
             reviews,
-            mangainfo
+            mangainfo,
+            userInSession: req.session.currentUser
         });
     } catch (e) {
         console.log("error", e)

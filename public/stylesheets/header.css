@@ -52,7 +52,6 @@ header {
     width: 2em;
     border-radius: 2px;
     position: relative;
-
 }
 
 .nav-toggle-label span::before,
@@ -141,7 +140,6 @@ nav a {
     border-radius: 70px;
     text-transform: capitalize;
     background: #f3f3f3;
-
 }
 
 .search_box .btn-search {
@@ -168,6 +166,7 @@ nav a {
 
 
 /* ||NAVIGATION */
+
 .sign-btn,
 .login-btn {
     border-radius: 20px;
@@ -206,7 +205,6 @@ nav a {
 }
 
 
-
 /* || MAIN CONTAINER */
 
 .gallery {
@@ -230,31 +228,25 @@ nav a {
 
 
 
-
 /* || BIG SCREEN 
 @media screen and (min-width: 768px) {
     .header {
         flex-direction: row;
     }
-
     .img-content {
         display: block;
         padding: 1rem 0;
     }
-
     .logo-mobile {
         display: none;
     }
-
     .logo-big {
         display: flex;
         margin-bottom: 0;
     }
-
     .nav-toggle-label {
         display: none;
     }
-
     nav {
         position: relative;
         text-align: left;
@@ -264,7 +256,6 @@ nav a {
         top: initial;
         left: initial;
     }
-
     nav ul {
         display: flex;
         align-items: center;
@@ -272,18 +263,15 @@ nav a {
         padding: 0;
         flex-direction: row;
     }
-
     nav li {
         margin-left: 3em;
         margin-bottom: 0;
         color: var(--black);
     }
-
     nav a {
         opacity: 1;
         position: relative;
     }
-
     .search_box {
         width: 500px;
     }
