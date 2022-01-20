@@ -34,7 +34,14 @@ router.get("/getFolders/:iduser", async(req, res, next) => {
     try {
         const { iduser } = req.params;
         console.log(req.params)
-        if (!iduser) res.render("error");
+        if (!iduser) {
+            const { _id: idUSer } = req.session.currentUser
+            res.render("error")
+        };
+
+        if (!iduser) {
+            res.render("error")
+        };
 
         const folders = await Folder.find({ user: iduser, active: true })
             .populate("contentFolder")
@@ -75,19 +82,15 @@ router.post("/", async(req, res, next) => {
 
         if (type) data["type"] = type;
 
-        const folder = await Folder.findOne({ folderName, user: isUser });
-        if (!folder) {
-            const new_folder = Folder.create(data);
-            //console.log("created a new folder", new_folder, isUser)
-            const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${isUser}`);
-            //console.log(folders)
-            const contentFolder = folders.data.item;
-            res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
-        } else {
-            return res.json({
-                "msg": "founded a folder"
-            });
-        }
+        const folder = await Folder.findOne({ folderName, user: isUser, active: true });
+        if (folder) { console.log("folder alredy exist"); }
+
+        const new_folder = Folder.create(data);
+        //console.log("created a new folder", new_folder, isUser)
+        const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${isUser}`);
+        //console.log(folders)
+        const contentFolder = folders.data.item;
+        res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
 
     } catch (e) {
         console.log(e)
@@ -101,8 +104,44 @@ router.post("/", async(req, res, next) => {
 
 });
 
+router.get("/addAnime/:idManga/liked", async(req, res, next) => {
+    try {
+        const { idManga } = req.params;
+        if (!req.session.currentUser) {
+            res.redirect("/auth/login");
+        }
 
-router.put("/addManga/:id", async(req, res, next) => {
+        const { data: mangainfo } = await axios.get(`https://api.jikan.moe/v3/anime/${idManga}`);
+        const { mal_id: idMangapi, title: tittle, image_url: img } = mangainfo;
+
+        //console.log("req.params ", idManga, "mangainfo", mangainfo)
+
+        let manga = await Manga.findOne({ idMangapi, active: true });
+        if (!manga) {
+            data = {
+                idMangapi,
+                tittle,
+                img
+            };
+            manga = await Manga.create(data);
+        }
+        const fold = await Folder.findOne({ user: req.session.currentUser._id, folderName: "favorites" })
+        let mangas = fold.contentFolder;
+        mangas.push(manga._id);
+        const folder = await Folder.findByIdAndUpdate(fold._id, { contentFolder: mangas, }, { new: true })
+        res.redirect("/");
+    } catch (e) {
+        console.log(e)
+
+        return res.json({
+            "msg": "error",
+            "e": e
+        });
+    }
+});
+
+
+router.post("/addManga/:id", async(req, res, next) => {
     /**
      * params id: folder
      * summary: add a manga to folder
@@ -135,8 +174,6 @@ router.put("/addManga/:id", async(req, res, next) => {
             "e": e
         });
     }
-
-
 });
 
 

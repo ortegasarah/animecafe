@@ -49,9 +49,9 @@
                 {{#each folders}}
                 <div class="col-12 col-md-6 col-lg-4" >
                     <a href="/folder/{{this._id}}">
-                        <div class="folder">
+                        <div class="folder d-flex align-items-center justify-content-center">
+                            <p class="text-center" style="text-transform: uppercase;">{{this.folderName}}</p>
                         </div>
-                        <p class="text-center">{{this.folderName}}</p>
                     </a>
                 </div>
                 {{/each}}
