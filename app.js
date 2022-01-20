@@ -13,10 +13,12 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 const path = require('path');
+const paginateHelper = require('express-handlebars-paginate');
 
 const fileUpload = require('express-fileupload');
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+hbs.registerHelper('paginateHelper', paginateHelper.createPagination);
 
 const app = express();
 
@@ -51,6 +53,8 @@ const search = require("./routes/search");
 const anime = require("./routes/anime");
 const folder = require("./routes/folder");
 const review = require("./routes/review");
+//Register Helper
+
 
 
 
