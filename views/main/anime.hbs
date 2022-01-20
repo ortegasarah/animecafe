@@ -92,13 +92,48 @@
                   <img src="{{reviewer.image_url}}" alt="{{reviewer.username}} image" class="user-img">
                 </div>
                 <h3> {{reviewer.username}}</h3>
-                <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
+                <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20"> {{reviewer.scores.overall}}
               </div>
             </div>
             <div class="review-text module line-clamp" style="max-width: 800px">
               {{content}}
+
             </div>
           </div>
+
+
+
+
+
+
+          <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#mi-modal-2">
+            Abrir Modal 2
+          </button>
+
+
+          <div class="modal fade" id="mi-modal-2" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-2"
+            data-bs-backdrop="static">
+            <!-- Caja de dialogo -->
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <!-- Contenido de la caja -->
+              <div class="modal-content">
+                <p>{{this.reviewer.username }}</p>
+{{reviewer.scores.overall}}
+                <!-- Encabezado de la caja -->
+
+                <!-- Cuerpo de la caja -->
+                <div class="modal-body">
+                  <p>{{this.reviewer.username}}</p>
+                </div>
+                <!-- Pie de pagina de la caja -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary">Acepto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
 
         </div>
@@ -129,9 +164,9 @@
       </button>
     </form>
     {{else}}
-      <p>You must have an account to leave a review</p>
-      <button class="login-btn"><a href="/auth/login">Log In</a></button>
-      <button class="sign-btn"><a href="/auth/signup">Sign in</a></button>
+    <p>You must have an account to leave a review</p>
+    <button class="login-btn"><a href="/auth/login">Log In</a></button>
+    <button class="sign-btn"><a href="/auth/signup">Sign in</a></button>
     {{/if}}
   </section>
   {{> footer}}
