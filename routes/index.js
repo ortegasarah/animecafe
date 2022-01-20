@@ -7,11 +7,7 @@ router.get("/", async(req, res, next) => {
         articles = response_articles.data.top.slice(0, 8);
         response_top = await axios.get('https://api.jikan.moe/v3/top/anime/1');
         top = response_top.data.top.slice(0, 8);
-        data = {
-            articles,
-            top
-        };
-        res.render("index", data);
+        res.render("index", { articles, top, userInSession: req.session.currentUser });
     } catch (e) {
         res.render("error");
     }

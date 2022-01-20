@@ -14,9 +14,25 @@
     margin-bottom: 10px;
 }
 
-.button-block-red {
+.button-block-dark {
     color: #fff;
-    background: red;
+    background: black;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: all .3s ease;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.button-block-blue {
+    color: #fff;
+    background: #4DB0B9;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -45,6 +61,15 @@ input[type="file"] {
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
+}
+
+.user_profile {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .img-profile {

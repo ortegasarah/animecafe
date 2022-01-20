@@ -24,7 +24,6 @@ router.post("/signupgoogle", [
     validate
 ], async(req, res, next) => {
     const { id_token } = req.body;
-
     try {
         const { email, name, picture: img, idGoogle } = await googleVerify(id_token);
         const user = await User.findOne({ idGoogle });
@@ -46,7 +45,7 @@ router.post("/signupgoogle", [
             userdb = await User.create(data);
             const { _id: idUser } = userdb;
             req.session.currentUser = userdb;
-            axios.post('http://localhost:3000/folder/', {
+            axios.post(`${process.env.ANIME_URI}/folder/`, {
                 "isUser": idUser,
                 "folderName": "favorites",
                 "type": 2
@@ -71,10 +70,8 @@ router.post("/signup", [
 ], async(req, res, next) => {
     try {
         const { name, email, password } = req.body;
-
         const salt = bcryptjs.genSaltSync(10);
         const newPassword = bcryptjs.hashSync(password, salt);
-
         const userdb = await User.findOne({ email });
         const username = uuidv4() + email.split("@")[0];
         if (!userdb) {
@@ -87,7 +84,7 @@ router.post("/signup", [
             const user = await User.create(data);
             const { _id: idUser } = user;
             req.session.currentUser = user;
-            axios.post('http://localhost:3000/folder/', {
+            axios.post(`${process.env.ANIME_URI}/folder/`, {
                 "isUser": idUser,
                 "folderName": "favorites",
                 "type": 2
@@ -187,7 +184,7 @@ router.post("/forgot_password", async(req, res, next) => {
         const user = await User.findOne({ email });
         console.log(user)
         if (user) {
-            data = { url: `http://localhost:3000/auth/reset_password/${user.id}` }
+            data = { url: `${process.env.ANIME_URI}/auth/reset_password/${user.id}` }
             sendEmail(email, data, 'd-eb14ae8bf8924318a727ec3390616d61')
         }
         res.render('auth/forgotPassword', { errorMessage: 'We send you an email' });

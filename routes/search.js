@@ -17,12 +17,16 @@ router.get("/", (req, res, next) => {
                 console.log(responseAxios.data)
                 res.render("main/results", {
                     results: responseAxios.data.results,
+
                     pagination: {
                         page: Number(page)+1,
                         limit: 7,
                         totalRows: 5,
                         queryParams: {title, page}
-                    }
+                    },
+
+                    userInSession: req.session.currentUser
+
                 });
             })
             .catch(error => {
