@@ -93,7 +93,7 @@
                 </div>
                 <h3> {{reviewer.username}}</h3>
                 <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20">
-                  {{reviewer.scores.overall}}</h5>
+                  {{!-- {{reviewer.scores.overall}}</h5>
                 <table class="scores">
                   <tr>
                     <td>story: {{reviewer.scores.story}}/10</td>
@@ -103,7 +103,7 @@
                     <td>character: {{reviewer.scores.character}}/10</td>
                     <td>enjoyment: {{reviewer.scores.enjoyment}}/10</td>
                   </tr>
-                </table>
+                </table> --}}
 
               </div>
             </div>
@@ -112,23 +112,58 @@
 
             </div>
 
-              <br>
-              <br>
-            </div>
-            {{!-- <input type="checkbox" id="btn-modal">
+            <br>
+            <br>
+          </div>
 
-            <label for="btn-modal" class="lbl-modal">Read More</label>
-            <div class="modal">
-              <div class="container">
-                <label for="btn-modal">CLOSE</label>
-                <div class="content">
-                  <h3>Review from {{reviewer.username}} </h3>
-                  <div>{{content}}</div>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Launch demo modal
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  {{content}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
               </div>
-            </div> --}}
+            </div>
           </div>
+
+
+
+
+
+          {{!-- <input type="checkbox" id="btn-modal">
+
+          <label for="btn-modal" class="lbl-modal">Read More</label>
+          <div class="modal">
+            <div class="container">
+              <label for="btn-modal">CLOSE</label>
+              <div class="content">
+                <h3>Review from {{reviewer.username}} </h3>
+                <div>{{content}}</div>
+              </div>
+            </div>
+          </div> --}}
         </div>
+
+      </div>
+
 
 
         {{/each}}

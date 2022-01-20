@@ -4,25 +4,38 @@ const axios = require("axios")
 router.get("/", (req, res, next) => {
     console.log(req.query)
     if (Object.keys(req.query).length) {
-        const {
-            title
+        let {
+            title,
+            page
         } = req.query
+        if(!page){
+            page = 1
+        }
         let score = "title"
-        axios.get(`https://api.jikan.moe/v3/search/anime?q=${title}&page=1&order_by=${score}`)
+        axios.get(`https://api.jikan.moe/v3/search/anime?q=${title}&page=${page}&order_by=${score}`)
             .then(responseAxios => {
                 console.log(responseAxios.data)
                 res.render("main/results", {
                     results: responseAxios.data.results,
+
+                    pagination: {
+                        page: Number(page)+1,
+                        limit: 7,
+                        totalRows: 5,
+                        queryParams: {title, page}
+                    },
+
                     userInSession: req.session.currentUser
+
                 });
             })
             .catch(error => {
-                console.log("error")
-                res.render("/");
+                console.log("error", error)
+                res.redirect("/");
             })
 
     } else {
-        res.render("/");
+        res.redirect("/");
     }
 });
 
