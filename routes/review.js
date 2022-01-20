@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Review = require("../models/Review.model");
 
-
+//GET REVIEWS
 router.get("/:idMangapi", async(req, res, next) => {
     const { idMangapi } = req.params;
     console.log(req.params)
@@ -19,7 +19,7 @@ router.get("/:idMangapi", async(req, res, next) => {
     }
 });
 
-
+//ADD REVIEW
 router.post("/", async(req, res, next) => {
     try {
         const { iduser, idMangapi, description } = req.body;
@@ -31,7 +31,10 @@ router.post("/", async(req, res, next) => {
         };
         const review = await Review.create(data);
 
-        return res.json({
+        
+
+
+ return res.json({
             "msg": "created",
             "item": review
         });
@@ -46,7 +49,7 @@ router.post("/", async(req, res, next) => {
 
 });
 
-
+//ACTUALIZE REVIEW
 router.put("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
@@ -70,6 +73,7 @@ router.put("/:id", async(req, res, next) => {
 
 });
 
+//DELETE REVIEW
 router.delete("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
