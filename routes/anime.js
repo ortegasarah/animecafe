@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Anime = require("../models/Manga.model");
 const axios = require("axios");
 
-/* BROWSE */
+/* || BROWSE || */
 router.get("/browse", (req, res, next) => {
     const genres = [{
         label: "Action",

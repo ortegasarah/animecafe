@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="/stylesheets/auth.css" />
   <link rel="stylesheet" href="/stylesheets/header.css" />
   <link rel="stylesheet" href="/stylesheets/mangainfo.css" />
+    <link rel="stylesheet" href="/stylesheets/browse.css" />
+
   <link rel="stylesheet" href="/stylesheets/footer.css" />
 
 </head>
@@ -38,7 +40,8 @@
       </div>
     </div>
     {{/if}}
-    {{{paginateHelper pagination leftText="prev" rightText="next" }}}
+
+    {{{paginateHelper pagination leftText="< Prev - " rightText="- Next >"  paginationClass="pagination"}}}
   </section>
   {{> footer}}
 
