@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Anime = require("../models/Manga.model");
 const axios = require("axios");
 const Review = require("../models/Review.model")
-/* || BROWSE || */
+    /* || BROWSE || */
 router.get("/browse", (req, res, next) => {
     const genres = [{
         label: "Action",
@@ -125,7 +125,7 @@ router.get("/genres/:id", (req, res) => {
     })
 })
 
-router.get("/getManga/:idMangapi", async (req, res, next) => {
+router.get("/getManga/:idMangapi", async(req, res, next) => {
     try {
         const {
             idMangapi
@@ -161,7 +161,7 @@ router.get("/getManga/:idMangapi", async (req, res, next) => {
 });
 
 
-router.post("/", async (req, res, next) => {
+router.post("/", async(req, res, next) => {
 
     try {
         const {
@@ -200,7 +200,7 @@ router.post("/", async (req, res, next) => {
 });
 
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async(req, res, next) => {
     try {
         const {
             id
@@ -212,11 +212,11 @@ router.get("/:id", async (req, res, next) => {
         // reviews = reviews.data.slice(0, 4);
         const userReviews = await Review.find({
             mal_id: id
-        }).populate("reviewer","image_url username" )
+        }).populate("reviewer", "image_url username")
         const {
             data: mangainfo
         } = await axios.get(`https://api.jikan.moe/v3/anime/${id}`);
-        const reviews = [...userReviews,...reviewsApi.reviews]
+        const reviews = [...userReviews, ...reviewsApi.reviews]
         res.render("main/anime", {
             reviews,
             mangainfo,
@@ -228,7 +228,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", async(req, res, next) => {
     try {
         const {
             id
@@ -265,7 +265,7 @@ router.put("/:id", async (req, res, next) => {
 
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", async(req, res, next) => {
     try {
         const {
             id

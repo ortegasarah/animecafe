@@ -8,21 +8,36 @@ router.get("/", (req, res, next) => {
             title,
             page
         } = req.query
-        if(!page){
+        if (!page) {
             page = 1
         }
-        let score = "title"
+        let score = "title";
+        let boards = [];
+        if (req.session.currentUser) {
+            const { _id: idUser } = req.session.currentUser;
+            console.log(idUser, process.env.ANIME_URI)
+            axios.get(`${process.env.ANIME_URI}/folder/getFolders/${idUser}`)
+                .then(response => {
+                    boards = response.data.item;
+                }).catch(error => {
+                    console.log("error", error);
+                    res.redirect("/");
+                })
+        }
+
         axios.get(`https://api.jikan.moe/v3/search/anime?q=${title}&page=${page}&order_by=${score}`)
             .then(responseAxios => {
                 console.log(responseAxios.data)
+                const { results } = responseAxios.data;
+                results.forEach(element => { element["boards"] = boards });
                 res.render("main/results", {
-                    results: responseAxios.data.results,
-/* || ADD PAGINATION || */
+                    results,
+                    /* || ADD PAGINATION || */
                     pagination: {
-                        page: Number(page)+1,
+                        page: Number(page) + 1,
                         limit: 7,
                         totalRows: 5,
-                        queryParams: {title, page}
+                        queryParams: { title, page }
                     },
 
                     userInSession: req.session.currentUser
