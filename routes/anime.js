@@ -35,12 +35,26 @@ router.get("/browse", (req, res, next) => {
         label: "Super Power",
         id: 31
     }]
-
+    let boards = [];
+    if (req.session.currentUser) {
+        const { _id: idUser } = req.session.currentUser;
+        console.log(idUser, process.env.ANIME_URI)
+        axios.get(`${process.env.ANIME_URI}/folder/getFolders/${idUser}`)
+            .then(response => {
+                boards = response.data.item;
+            }).catch(error => {
+                console.log("error", error);
+                res.redirect("/");
+            })
+    }
     axios.get(`https://api.jikan.moe/v3/top/anime/1/upcoming`)
         .then(responseAxios => {
             console.log(responseAxios.data.top)
+            const { top } = responseAxios.data;
+            top.forEach(element => { element["boards"] = boards });
+
             res.render("main/browse", {
-                results: responseAxios.data.top,
+                results: top,
                 genres
             });
         })
