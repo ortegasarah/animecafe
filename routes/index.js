@@ -15,17 +15,9 @@ router.get("/", async(req, res, next) => {
             const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${idUser}`);
             boards = folders.data.item;
         }
-        //console.log("--------- articles ", articles)
 
-        const data = {
-            articles: articles,
-            boards: boards
-        }
-
-        articles.forEach(element => {
-            element["boards"] = boards
-            console.log(element);
-        });
+        articles.forEach(element => { element["boards"] = boards });
+        top.forEach(element => { element["boards"] = boards });
 
         res.render("index", { articles, top, userInSession: req.session.currentUser });
     } catch (e) {
@@ -35,9 +27,7 @@ router.get("/", async(req, res, next) => {
 });
 
 router.get("/error", async(req, res, next) => {
-
     res.render("error");
-
-
 });
+
 module.exports = router;

@@ -34,7 +34,6 @@
 <div class="col-12 col-md-3">
     <div class="card mb-2" style="max-width: 400px;">
         <div class="card-deck">
-            {{!-- <div class="card"> --}}
                 <div class="img-card-partials">
                     <a href="/anime/{{mal_id}}">
                         <img class="card-img-top" src="{{image_url}}" alt="Card image cap">
@@ -50,9 +49,9 @@
                 <div class="save-icon">
                     <a href="/folder/addAnime/{{mal_id}}/liked" class="liked-anime">
                         <svg viewBox="0 0 32 32" id="heart">
-  <path id="heart-path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
-    C30,20.335,16,28.261,16,28.261z"/>            
-</svg>
+                        <path id="heart-path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
+                            C30,20.335,16,28.261,16,28.261z"/>
+                        </svg>
                     </a>
                     <a href="" data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -62,46 +61,32 @@
                         </svg>
                     </a>
                 </div>
-            {{!-- </div> --}}
         </div>
     </div>
 </div>
 
 
-<div
-    class="modal fade"
-    id="mi-modal-{{mal_id}}"
-    tabindex="-1"
-    aria-hidden="true"
-    aria-labelledby="label-modal-2"
-    data-bs-backdrop="static">
-    <!-- Caja de dialogo -->
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <!-- Contenido de la caja -->
+<div class="modal fade" id="mi-modal-{{mal_id}}" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-2" data-bs-backdrop="static">
+    <div class="modal-dialog ">
         <div class="modal-content">
-            <!-- Encabezado de la caja -->
             <div class="modal-header">
                 <h5 class="modal-title">{{title}}</h5>
                 <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
-
-            <!-- Cuerpo de la caja -->
             <div class="modal-body">
-                <div style="height: 1000px;">
+                <div>
                     {{#each boards}}
                         <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">{{folderName}}</a>
+                        <a href="/folder/addAnime/{{../mal_id}}/board/{{this._id}}" class="list-group-item list-group-item-action" style="text-transform: uppercase;">{{this.folderName}}</a>
                         </div>
-                        
                     {{/each}}
                 </div>
-            </div>
-
-            <!-- Pie de pagina de la caja -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Acepto</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+
+</script>

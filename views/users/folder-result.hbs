@@ -36,16 +36,21 @@
             </div>
         </div>
 
-        <div class="container pb-5" >
+        <div class="container pb-5"  style="height: 100vh">
             <div class="row">
                 {{#each folder.contentFolder}}
                     <div  class="col-12 col-md-6 col-lg-3  pb-5">
                         <div class="row">
                             <h4 class="text-center">{{this.tittle}}</h4>
                             <div class="col-8" style="border-radius: 25px;">
-                                <a href="/anime/{{this.idMangapi}}" >
+                                <a href="/anime/{{this.idMangapi}}"  class="pb-5">
                                     <img src="{{this.img}}"  alt="{{this.tittle}}" style="border-radius: 10%">
                                 </a>
+                                <br>
+                                <form action="/folder/deleteAnime/{{../folder._id}}" method="POST" class="pt-2 d-flex justify-content-end">
+                                    <input type="text" style="display: none;" name="idAnime"  value={{this._id}}>
+                                    <button type="submit" class="btn btn-danger pt-2" >Delete anime </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -63,40 +68,41 @@
 
 
 
-    <div class="modal fade" id="mi-modal-1" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-1">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">{{folder.folderName}}</h5>
-            <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-9">
-                            <form action="/folder/update/{{folder._id}}" method="POST">
-                                <div class="mb-3 pt-3">
-                                    <label for="name" class="form-label">Board name</label>
-                                    <input type="text" class="form-control " id="name" name="folderName" value="{{folder.folderName}}" required>
-                                </div>
-                                <input type="text" style="display: none;" name="isUser"  value={{folder._id}}>
-                                <button type="submit"  class="btn btn-primary">Update board</button>
-                            </form>
-                        </div>
-                        <div class="col-3 justify-content-center" style="align-items: center;">
-                            <form action="/folder/delete/{{folder._id}}" method="POST">
-                                <input type="text" style="display: none;" name="isUser"  value={{folder._id}}>
-                                <button type="submit"  class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
+<div class="modal fade" id="mi-modal-1" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-1">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">{{folder.folderName}}</h5>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <form action="/folder/update/{{folder._id}}" method="POST">
+                            <div class="mb-3 pt-3">
+                                <label for="name" class="form-label">Board name</label>
+                                <input type="text" class="form-control " id="name" name="folderName" value="{{folder.folderName}}" required>
+                            </div>
+                            <input type="text" style="display: none;" name="isUser"  value={{folder._id}}>
+                            <button type="submit"  class="btn btn-primary">Update board</button>
+                        </form>
+                    </div>
+                    <div class="col-3 justify-content-center" style="align-items: center;">
+                        <form action="/folder/delete/{{folder._id}}" method="POST">
+                            <input type="text" style="display: none;" name="isUser"  value={{folder._id}}>
+                            <button type="submit"  class="btn btn-danger">Delete</button>
+                        </form>
                     </div>
                 </div>
-
             </div>
 
         </div>
-        </div>
-	</div>
+
+    </div>
+    </div>
+</div>
+
 
 
     <script src="/js/script.js"></script>
