@@ -74,7 +74,7 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	max-width: 150px;
+	max-width: 250px;
 }
 
 
@@ -122,8 +122,8 @@
 	text-decoration: underline;
 }
 .modal-dialog {
-	max-width: 50% !important;
-
+	max-width: 80% !important;
+	margin: 0 auto;
 }
 
 .modal-content {
@@ -210,5 +210,8 @@ button.btn-modal.login-btn{
 
 	.wrapper-img {
 		width: 40%;
+	}
+	.modal-dialog {
+		max-width: 50% !important;
 	}
 }
