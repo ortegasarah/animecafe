@@ -73,7 +73,7 @@ nav {
     border-radius: 70px;
     text-align: left;
     left: 0;
-    width: 100%;
+    width: 60%;
     transform: scale(1, 0);
     transform-origin: top;
     transition: transform 400ms ease-in-out;
@@ -116,8 +116,9 @@ nav a {
 /* || SEARCH BAR */
 
 .search_wrap {
-    margin: 0 3rem;
-    align-items: center;
+    width: 90%;
+    display: flex;
+    justify-content: center;
 }
 
 .search_box {
@@ -196,6 +197,7 @@ nav a {
 .sign-btn:hover,
 .login-btn:hover {
     background-color: black;
+    color: white;
 }
 
 .sign-btn:hover a,
@@ -278,24 +280,26 @@ nav a {
 
 /* || LAPTOP */
 
-@media screen and (min-device-width: 1024px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+@media screen and (min-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
     .header {
         flex-direction: row;
+    }
+    .search_wrap {
+        justify-content:flex-end;
     }
     .img-content {
         display: block;
         padding: 1rem 0;
     }
+    
     .logo-mobile {
         display: none;
     }
-    .logo-big {
+    .logo-big {  
         display: flex;
         margin-bottom: 0;
     }
-    .logo-big :hover {
-        fill: red;
-    }
+
     .nav-toggle-label {
         display: none;
     }

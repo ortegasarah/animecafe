@@ -92,7 +92,7 @@
                 <div class="user-image">
                   <img src="{{reviewer.image_url}}" alt="{{reviewer.username}} image" class="user-img">
                 </div>
-                <h3> {{reviewer.username}}</h3>
+                <h3 class="line-clamp-username"> {{reviewer.username}}</h3>
               </div>
             </div>
             <div class="review-text module line-clamp" style="max-width: 800px">
@@ -102,37 +102,28 @@
           </div>
 
 
-          <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
-            Abrir Modal {{mal_id}}
-          </button>
+          {{!-- MODAL REVIEW --}}
+          <p class="btn-read-more" data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
+            Read more...
+          </p>
 
-          <div class="modal fade" id="mi-modal-{{mal_id}}" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-1">
-            <!-- Caja de dialogo -->
+          <div class="modal fade" id="mi-modal-{{mal_id}}" tabindex="-1" aria-hidden="true"
+            aria-labelledby="label-modal-1">
             <div class="modal-dialog">
-              <!-- Contenido de la caja -->
               <div class="modal-content">
-                <!-- Encabezado de la caja -->
                 <div class="modal-header">
-                  <h5 class="modal-title">Titulo del modal</h5>
-                  <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  <h5 class="modal-title">Review by {{reviewer.username}}</h5>
+                  <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <!-- Cuerpo de la caja -->
                 <div class="modal-body">
-                  <h1>{{content}}</h1>
+                  <p>{{content}}</p>
                 </div>
-
-                <!-- Pie de pagina de la caja -->
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary">Acepto</button>
+                  <button type="button" class="btn-modal login-btn" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
           </div>
-
-
-
 
 
         </div>
