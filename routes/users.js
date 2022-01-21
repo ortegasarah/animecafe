@@ -75,6 +75,7 @@ router.post("/delete/:id", async(req, res, next) => {
 
     } catch (e) {
         console.log(e);
+        res.render("error");
     }
 });
 

@@ -132,25 +132,27 @@ router.get("/addAnime/:idManga/liked", async(req, res, next) => {
         res.redirect("/");
     } catch (e) {
         console.log(e)
-
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        res.render("error");
     }
 });
 
 
-router.post("/addManga/:id", async(req, res, next) => {
+router.get("/addAnime/:idAnime/board/:id", async(req, res, next) => {
     /**
      * params id: folder
      * summary: add a manga to folder
      */
     try {
-        const { id } = req.params;
-        const { idMangapi, tittle, img } = req.body;
-        console.log("req.params ", id, "req.body", tittle, img)
-        if (!id || !idMangapi || !img || !tittle) res.render("error");
+        const { idAnime: idManga, id } = req.params;
+        if (!req.session.currentUser) {
+            res.redirect("/auth/login");
+        }
+
+        const { data: mangainfo } = await axios.get(`https://api.jikan.moe/v3/anime/${idManga}`);
+        const { mal_id: idMangapi, title: tittle, image_url: img } = mangainfo;
+
+        //console.log("req.params ", idManga, "mangainfo", mangainfo)
+
         let manga = await Manga.findOne({ idMangapi, active: true });
         if (!manga) {
             data = {
@@ -160,14 +162,11 @@ router.post("/addManga/:id", async(req, res, next) => {
             };
             manga = await Manga.create(data);
         }
-        const fold = await Folder.findById(id);
+        const fold = await Folder.findById(id)
         let mangas = fold.contentFolder;
         mangas.push(manga._id);
-        const folder = await Folder.findByIdAndUpdate(id, { contentFolder: mangas, }, { new: true })
-        return res.json({
-            "msg": "add  manga to folder",
-            "item": folder
-        });
+        const folder = await Folder.findByIdAndUpdate(fold._id, { contentFolder: mangas, }, { new: true })
+        res.redirect("/");
     } catch (e) {
         return res.json({
             "msg": "error",

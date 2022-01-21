@@ -48,21 +48,59 @@
                 </div>
                 </a>
                 <div class="save-icon">
-                    <a href="/folder/addAnime/{{mal_id}}/liked">
+                    <a href="/folder/addAnime/{{mal_id}}/liked" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                         </svg>
                     </a>
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-bookmark" viewBox="0 0 16 16">
-                    <path
-                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-                </svg>
-                	
-
+                    <a href="" data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-bookmark" viewBox="0 0 16 16">
+                            <path
+                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                        </svg>
+                    </a>
                 </div>
             {{!-- </div> --}}
+        </div>
+    </div>
+</div>
+
+
+<div
+    class="modal fade"
+    id="mi-modal-{{mal_id}}"
+    tabindex="-1"
+    aria-hidden="true"
+    aria-labelledby="label-modal-2"
+    data-bs-backdrop="static">
+    <!-- Caja de dialogo -->
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <!-- Contenido de la caja -->
+        <div class="modal-content">
+            <!-- Encabezado de la caja -->
+            <div class="modal-header">
+                <h5 class="modal-title">{{title}}</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <!-- Cuerpo de la caja -->
+            <div class="modal-body">
+                <div style="height: 1000px;">
+                    {{#each boards}}
+                        <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">{{folderName}}</a>
+                        </div>
+                        
+                    {{/each}}
+                </div>
+            </div>
+
+            <!-- Pie de pagina de la caja -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Acepto</button>
+            </div>
         </div>
     </div>
 </div>
