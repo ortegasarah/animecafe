@@ -197,6 +197,7 @@ nav a {
 .sign-btn:hover,
 .login-btn:hover {
     background-color: black;
+    color: white;
 }
 
 .sign-btn:hover a,

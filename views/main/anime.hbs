@@ -102,43 +102,28 @@
           </div>
 
 
-
-
-
-
-
           {{!-- MODAL REVIEW --}}
-          <button class="btn " data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
+          <p class="btn-read-more" data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
             Read more...
-          </button>
+          </p>
 
           <div class="modal fade" id="mi-modal-{{mal_id}}" tabindex="-1" aria-hidden="true"
             aria-labelledby="label-modal-1">
-            <!-- Caja de dialogo -->
             <div class="modal-dialog">
-              <!-- Contenido de la caja -->
               <div class="modal-content">
-                <!-- Encabezado de la caja -->
                 <div class="modal-header">
                   <h5 class="modal-title">Review by {{reviewer.username}}</h5>
                   <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <!-- Cuerpo de la caja -->
                 <div class="modal-body">
                   <p>{{content}}</p>
                 </div>
-
-                <!-- Pie de pagina de la caja -->
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn-modal login-btn" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
           </div>
-
-
-
 
 
         </div>
