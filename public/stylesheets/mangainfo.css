@@ -69,7 +69,12 @@
 	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 }
-
+.line-clamp-username{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 150px;
+}
 
 
 .scores {
