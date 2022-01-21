@@ -25,7 +25,7 @@ router.post("/signupgoogle", [
 ], async(req, res, next) => {
     const { id_token } = req.body;
     try {
-        const { email, name, picture: img, idGoogle } = await googleVerify(id_token);
+        const { email, name, picture: image_url, idGoogle } = await googleVerify(id_token);
         const user = await User.findOne({ idGoogle });
         console.log(user)
 
@@ -36,7 +36,7 @@ router.post("/signupgoogle", [
             const data = {
                 email,
                 name,
-                img,
+                image_url,
                 password: newPassword,
                 google: true,
                 username,

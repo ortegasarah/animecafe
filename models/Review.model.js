@@ -1,16 +1,16 @@
 const { Schema, model } = require("mongoose");
 
 const reviewSchema = new Schema({
-    user: {
+    reviewer: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    idMangapi: {
+    mal_id: {
         type: Number,
         required: true
     },
-    description: {
+    content: {
         type: String,
         default: ''
     },

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <link rel="stylesheet" href="/stylesheets/auth.css" />
   <link rel="stylesheet" href="/stylesheets/header.css" />
+  <link rel="stylesheet" href="/stylesheets/browse.css" />
   <link rel="stylesheet" href="/stylesheets/mangainfo.css" />
   <link rel="stylesheet" href="/stylesheets/footer.css" />
 
@@ -80,9 +81,9 @@
   {{!-- REVIEWS --}}
   <section id="reviews">
     <h1>Reviews</h1>
-    {{#if reviews.reviews}}
+    {{#if reviews}}
     <div class="section-review">
-      {{#each reviews.reviews}}
+      {{#each reviews}}
       <div class="reviews-box-container">
         <div class="reviews-box">
           <div class="box-top">
@@ -92,7 +93,6 @@
                   <img src="{{reviewer.image_url}}" alt="{{reviewer.username}} image" class="user-img">
                 </div>
                 <h3> {{reviewer.username}}</h3>
-                <h5>rated it <img src="/images/star-score.svg" alt="star score" height="20"> {{reviewer.scores.overall}}
               </div>
             </div>
             <div class="review-text module line-clamp" style="max-width: 800px">
@@ -102,29 +102,26 @@
           </div>
 
 
-
-
-
-
-          <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#mi-modal-2">
-            Abrir Modal 2
+          <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
+            Abrir Modal {{mal_id}}
           </button>
 
-
-          <div class="modal fade" id="mi-modal-2" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-2"
-            data-bs-backdrop="static">
+          <div class="modal fade" id="mi-modal-{{mal_id}}" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-1">
             <!-- Caja de dialogo -->
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-dialog">
               <!-- Contenido de la caja -->
               <div class="modal-content">
-                <p>{{this.reviewer.username }}</p>
-{{reviewer.scores.overall}}
                 <!-- Encabezado de la caja -->
+                <div class="modal-header">
+                  <h5 class="modal-title">Titulo del modal</h5>
+                  <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
 
                 <!-- Cuerpo de la caja -->
                 <div class="modal-body">
-                  <p>{{this.reviewer.username}}</p>
+                  <h1>{{content}}</h1>
                 </div>
+
                 <!-- Pie de pagina de la caja -->
                 <div class="modal-footer">
                   <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
@@ -136,11 +133,10 @@
 
 
 
+
+
         </div>
-
       </div>
-
-
 
       {{/each}}
       {{else}}
@@ -155,9 +151,9 @@
     {{#if userInSession}}
     <form id="review-form" action="/review/" method="POST">
       <textarea class="form-txt" type="text" placeholder="What did you think of the manga?" aria-label="Review"
-        name="description"></textarea>
+        name="content"></textarea>
       <input type="text" style="display: none;" name="iduser" value={{userInSession._id}}>
-      <input type="text" style="display: none;" name="idMangapi" value={{mangainfo.mal_id}}>
+      <input type="text" style="display: none;" name="mal_id" value={{mangainfo.mal_id}}>
       <br>
       <button class="btn-submit" type="submit">
         Submit
