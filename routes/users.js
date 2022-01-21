@@ -49,7 +49,7 @@ router.post('/', async(req, res, next) => {
         const user = await User.findById(id);
         if (req.files) {
             const secure_url = await uploadFile(user, req.files.archivo);
-            user.img = secure_url;
+            user.image_url = secure_url;
         }
         user.email = email;
         user.username = username;

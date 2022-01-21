@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const Anime = require("../models/Manga.model");
 const axios = require("axios");
-
-/* BROWSE */
+const Review = require("../models/Review.model")
+/* || BROWSE || */
 router.get("/browse", (req, res, next) => {
     const genres = [{
         label: "Action",
@@ -68,20 +68,61 @@ router.get("/genres/:id", (req, res) => {
 
     const getGenre = (idGenre) => {
         switch (idGenre) {
-            case 1: return ({action:true, label: "Action"})
-            case 2: return ({action:true, label: "Adventure"})
-            case 3: return ({action:true, label: "Comedy"})
-            case 4: return ({action:true, label: "Fantasy"})
-            case 5: return ({action:true, label: "Horror"})
-            case 6: return ({action:true, label: "Martial Arts"})
-            case 7: return ({action:true, label: "Romance"})
-            case 8: return ({action:true, label: "Sci Fi"})
-            case 9: return ({action:true, label: "Space"})
-            case 10: return ({action:true, label: "Super Power"})
+            case 1:
+                return ({
+                    action: true,
+                    label: "Action"
+                })
+            case 2:
+                return ({
+                    action: true,
+                    label: "Adventure"
+                })
+            case 3:
+                return ({
+                    action: true,
+                    label: "Comedy"
+                })
+            case 4:
+                return ({
+                    action: true,
+                    label: "Fantasy"
+                })
+            case 5:
+                return ({
+                    action: true,
+                    label: "Horror"
+                })
+            case 6:
+                return ({
+                    action: true,
+                    label: "Martial Arts"
+                })
+            case 7:
+                return ({
+                    action: true,
+                    label: "Romance"
+                })
+            case 8:
+                return ({
+                    action: true,
+                    label: "Sci Fi"
+                })
+            case 9:
+                return ({
+                    action: true,
+                    label: "Space"
+                })
+            case 10:
+                return ({
+                    action: true,
+                    label: "Super Power"
+                })
         }
     }
     res.render('main/results', {
-        headerGenre: getGenre(req.params.genero_id)})
+        headerGenre: getGenre(req.params.idGenre)
+    })
 })
 
 router.get("/getManga/:idMangapi", async (req, res, next) => {
@@ -166,14 +207,16 @@ router.get("/:id", async (req, res, next) => {
         } = req.params
 
         const {
-            data: reviews
+            data: reviewsApi
         } = await axios.get(`https://api.jikan.moe/v3/anime/${id}/reviews`);
         // reviews = reviews.data.slice(0, 4);
-
+        const userReviews = await Review.find({
+            mal_id: id
+        }).populate("reviewer","image_url username" )
         const {
             data: mangainfo
         } = await axios.get(`https://api.jikan.moe/v3/anime/${id}`);
-        console.log("reviews", reviews)
+        const reviews = [...userReviews,...reviewsApi.reviews]
         res.render("main/anime", {
             reviews,
             mangainfo,

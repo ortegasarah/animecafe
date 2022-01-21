@@ -1,3 +1,30 @@
+/* || HEART ICON ||*/
+svg#heart {
+    height: 25px;
+    width: 25px;
+  }
+  
+  #heart-path {
+    fill: white;
+    stroke: black;
+    stroke-width: 2px;
+    transition: all 1s ease-out;
+  }
+  
+  #heart-path:hover {
+    fill: var(--purple);
+  }
+
+  #heart-path:visited {
+    fill: var(--purple);
+    stroke-dashoffset: 0;
+    stroke-dasharray: 125;
+  }
+
+
+
+/* || GENRE STYLE ||*/
+
 .genres a {
     text-align: center;
     font-weight: 800;
@@ -43,6 +70,23 @@
     justify-content: center;
     align-items: center;
 }
+
+
+/* || PAGINATION ||*/
+.pagination {
+    justify-content: center;
+    font-size: 2em;
+
+}
+
+.pagination li {
+    font-size: 0.6em;
+    font-weight: 500;
+   
+}
+
+.pagination li :hover{
+color: var(--purple);}
 
 
 @media screen and (min-width: 768px) {

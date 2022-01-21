@@ -4,12 +4,12 @@ cloudinary.config(process.env.CLOUDINARY_URL);
 async function uploadFile(user, archivo) {
     try {
         console.log("carga de archivo ************")
-        console.log(user.img)
-        if (user.img) {
+        console.log(user.image_url)
+        if (user.image_url) {
             console.log("mi usuario tiene una imagen")
-            if (!user.img.includes('google') || !user.img.includes('notFound_wpeppw.jpg')) {
+            if (!user.image_url.includes('google') || !user.image_url.includes('notFound_wpeppw.jpg')) {
                 console.log("eliminando imagen")
-                const nombreArr = user.img.split('/');
+                const nombreArr = user.image_url.split('/');
                 const nombre = nombreArr[nombreArr.length - 1];
                 const [public_id] = nombre.split('.');
                 cloudinary.uploader.destroy(public_id);

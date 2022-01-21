@@ -22,31 +22,18 @@ router.get("/:idMangapi", async(req, res, next) => {
 //ADD REVIEW
 router.post("/", async(req, res, next) => {
     try {
-        const { iduser, idMangapi, description } = req.body;
-        if (!iduser || !idMangapi || !description) res.render("error");
+        const { iduser, mal_id, content } = req.body;
+        if (!iduser || !mal_id || !content) res.render("error");
         data = {
-            idMangapi,
-            user: iduser,
-            description
+            mal_id,
+            reviewer: iduser,
+            content
         };
         const review = await Review.create(data);
-
-        
-
-
- return res.json({
-            "msg": "created",
-            "item": review
-        });
+        res.redirect(`/anime/${mal_id}`)
     } catch (e) {
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+      next(e)
     }
-
-
-
 });
 
 //ACTUALIZE REVIEW
