@@ -19,7 +19,7 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'the password is required']
     },
-    img: {
+    image_url: {
         type: String,
         default: 'https://res.cloudinary.com/dnywgpjkn/image/upload/v1642564314/notFound_ryzezw.jpg'
     },
