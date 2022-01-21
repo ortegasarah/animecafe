@@ -136,7 +136,7 @@ a:hover {
     width: fit-content;
     cursor: pointer;
     transition: 0.3s;
-    padding: 0.8em ;
+    padding: 0.8em;
     border: none;
     background-color: white;
     border: 2px var(--purple) solid;
@@ -163,7 +163,103 @@ a:hover {
 
 }
 
-/* || 404 ERROR */
+
+/* || CAROUSEL  || */
+@keyframes carousel {
+    0% {
+        left: 0%;
+    }
+
+    20% {
+        left: 0%;
+    }
+
+    25% {
+        left: -100%;
+    }
+
+    45% {
+        left: -100%;
+    }
+
+    50% {
+        left: -200%;
+    }
+
+    70% {
+        left: -200%;
+    }
+
+    75% {
+        left: -300%;
+    }
+
+    95% {
+        left: -300%;
+    }
+
+    100% {
+        left: -400%;
+    }
+}
+
+
+.carousel {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px var(--black solid);
+
+}
+
+.panes {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    width: 500%;
+    overflow: hidden;
+    -moz-animation: carousel 30s infinite;
+    -webkit-animation: carousel 30s infinite;
+    animation: carousel 30s infinite;
+}
+
+.panes>li {
+    position: relative;
+    float: left;
+    width: 20%;
+}
+
+.carousel img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.carousel-txt {
+    font-family: Fira Sans, sans-serif;
+    padding: 15% 3%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: var(--black);
+    background-color: var(--lilac);
+    opacity: 0.9;
+}
+
+.carousel-txt h2 {
+    font-family: p22-mackinac-pro, serif;
+    color: var(--black);
+    font-size: 2em;
+    margin: 0 auto;
+}
+
+
+
+/* || 404 ERROR  || */
 .error {
     letter-spacing: 0.3rem;
     font-size: 4em;
@@ -171,19 +267,41 @@ a:hover {
     text-align: center;
 }
 
-/* 
-img.card-img-top {
-    height: auto;
-} */
-
 @media screen and (min-width: 780px) {
     h1 {
         font: 50px "Roboto", Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding-top: 0;
     }
-
+    .carousel {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 700px;
+    }
+    
     .card-img-top {
         height: 400px;
     }
+
+    .carousel-txt {
+        font-family: Fira Sans, sans-serif;
+        padding: 15% 3%;
+        position: absolute;
+        width: 30%;
+        height: 100%;
+        text-align: center;
+        color: var(--black);
+        background-color: var(--lilac);
+        border-right: 1px var(--black) solid;
+    }
+    
+    .carousel-txt h2 {
+        font-family: p22-mackinac-pro, serif;
+        color: var(--black);
+        font-size: 3em;
+        margin: 0 auto;
+    }
+    
 }
