@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{title}}</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      <link rel="stylesheet" href="/stylesheets/auth.css" />
-   </head>
 
-   <body>
-    <div class="container-fluid bgauth" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/auth.css" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/header.css" />
+  <link rel="stylesheet" href="/stylesheets/mangainfo.css" />
+  <link rel="stylesheet" href="/stylesheets/browse.css" />
+  <link rel="stylesheet" href="/stylesheets/footer.css" />
+</head>
 
-      <div  class="row justify-content-center g-0">
-        <div class="col col-lg-6  pt-1">
-            <h1 class="centerText"> Welcome to Mangakafe</h1>
-        </div>
+<body>
+  <div class="container-fluid bgauth auth-log">
+
+    <div class="row justify-content-center g-0">
+      <div class="col col-lg-6  pt-1">
+       <h3 class="title-style"> Welcome to Mangakafe</h3>
       </div>
-      
-      <div class="row justify-content-start g-0">
+    </div>
+
+     <div class="row justify-content-start g-0">
         <div class=" col-12 col-lg-4  align-self-end">
             <img src="../../images/auth/naruto-signup.png" class ="narutoImg  d-none d-lg-block"  alt="naruto" >
         </div>
@@ -39,65 +46,77 @@
               </div>
           </div>
 
-          <p class="centerText boldtext pt-3"> OR </p>
+        <p class="centerText pt-3"> OR </p>
 
-          <form method="POST" action="/auth/signup" >
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control inputAuth" id="name" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control inputAuth" id="email" aria-describedby="emailHelp" name="email"  placeholder="Enter your email address"  required>
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control inputAuth" id="password" name="password"  placeholder="Enter your password"  required>
-            </div>
-            <div class="mb-3">
-              <label for="confpassword" class="form-label">Confirm Password</label>
-              <input type="password" class="form-control inputAuth" id="confpassword" name="confirmpassword"   placeholder="Enter your password" required>
-            </div>
-            
-            <div class="centerDiv pt-3">
-            <button type="submit" class="buttonAut" >SIGN UP</button>
-            </div>
+        <form method="POST" action="/auth/signup">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control inputAuth" id="name" name="name" placeholder="Enter your name"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control inputAuth" id="email" aria-describedby="emailHelp" name="email"
+              placeholder="Enter your email address" required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control inputAuth" id="password" name="password"
+              placeholder="Enter your password" required>
+          </div>
+          <div class="mb-3">
+            <label for="confpassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control inputAuth" id="confpassword" name="confirmpassword"
+              placeholder="Enter your password" required>
+          </div>
+          <div class="centerDiv">
+            <button class="sign-btn" type="submit">SIGN UP</button>
+          </div>
 
-          </form>
-          
-          <p class="centerText pt-2">ALREADY A MEMBER? <a href="/auth/login">SIGN IN </a></p>
-          
-          {{#if errorMessage}}
-              <p class="error">{{errorMessage}}</p>
-          {{/if}}
+        </form>
+        <p class="centerText">Already a member?</p>
+        <div class="button-landing">
+          <a href="/auth/login">LOG IN </a>
         </div>
+
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
       </div>
     </div>
+  </div>
 
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-   </body>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
 
 <script>
-   function handleCredentialResponse(response) {
+  function handleCredentialResponse(response) {
     const data = { id_token: response.credential };
-    var url = ( window.location.hostname.includes('localhost'))
-                    ? 'http://localhost:3000/auth/signupgoogle'
-                    : 'https://mangakafe.herokuapp.com/auth/signupgoogle'
+    var url = (window.location.hostname.includes('localhost'))
+      ? 'http://localhost:3000/auth/signupgoogle'
+      : 'https://mangakafe.herokuapp.com/auth/signupgoogle'
 
     fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(resp => {
-          window.open(resp.url, '_self'); 
-        })
-        .then(data => console.log('Nuestro server', data))
-        .catch(console.log);
-}
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(resp => {
+        window.open(resp.url, '_self');
+      })
+      .then(data => console.log('Nuestro server', data))
+      .catch(console.log);
+  }
 </script>

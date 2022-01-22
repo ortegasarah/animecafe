@@ -121,6 +121,8 @@ a:hover {
     text-transform: uppercase;
     font-weight: 500;
     margin: 0 auto;
+    color: var(--purple);
+
 }
 
 
@@ -133,6 +135,7 @@ a:hover {
 .button-landing:hover {
     background-color: black;
     border: 2px black solid;
+    color: white;
 
 }
 
