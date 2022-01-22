@@ -11,7 +11,6 @@ router.get("/", async(req, res, next) => {
 
         if (req.session.currentUser) {
             const { _id: idUser } = req.session.currentUser;
-            console.log(idUser, process.env.ANIME_URI)
             const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${idUser}`);
             boards = folders.data.item;
         }

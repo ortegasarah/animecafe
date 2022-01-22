@@ -4,7 +4,6 @@ const Review = require("../models/Review.model");
 //GET REVIEWS
 router.get("/:idMangapi", async(req, res, next) => {
     const { idMangapi } = req.params;
-    console.log(req.params)
     if (!idMangapi) res.render("error");
     const reviews = await Review.findOne({ idMangapi, active: true }).populate('user');
     if (reviews) {
@@ -32,7 +31,7 @@ router.post("/", async(req, res, next) => {
         const review = await Review.create(data);
         res.redirect(`/anime/${mal_id}`)
     } catch (e) {
-      next(e)
+        next(e)
     }
 });
 
@@ -41,7 +40,6 @@ router.put("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
         const { description } = req.body;
-        console.log("req.params ", id, "req.body", description)
         if (!id || !description) res.render("error");
         const review = await Review.findByIdAndUpdate(id, { description }, { new: true });
         if (review) {
@@ -64,7 +62,6 @@ router.put("/:id", async(req, res, next) => {
 router.delete("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
-        console.log("req.params ", id)
         if (!id) res.render("error");
         const review = await Review.findByIdAndUpdate(id, { active: false }, { new: true })
         if (review) {

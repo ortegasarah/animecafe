@@ -27,7 +27,6 @@ router.post("/signupgoogle", [
     try {
         const { email, name, picture: image_url, idGoogle } = await googleVerify(id_token);
         const user = await User.findOne({ idGoogle });
-        console.log(user)
 
         if (!user) {
             const salt = bcryptjs.genSaltSync(10);
@@ -182,7 +181,6 @@ router.post("/forgot_password", async(req, res, next) => {
             res.render("error");
         }
         const user = await User.findOne({ email });
-        console.log(user)
         if (user) {
             data = { url: `${process.env.ANIME_URI}/auth/reset_password/${user.id}` }
             sendEmail(email, data, 'd-eb14ae8bf8924318a727ec3390616d61')

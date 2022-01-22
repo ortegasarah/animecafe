@@ -26,7 +26,6 @@ router.get("/profile/:id", async(req, res, next) => {
         const { id } = req.params;
         if (!id) res.render("error");
         const user = await User.findById(id);
-        console.log(user);
         res.render('users/profile', { user_s: user, uri: process.env.ANIME_URI });
     } catch (e) {
         console.log(e);
