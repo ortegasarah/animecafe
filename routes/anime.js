@@ -79,64 +79,6 @@ router.get("/genres/:id", (req, res) => {
             console.log("error")
             res.render("/");
         })
-
-    const getGenre = (idGenre) => {
-        switch (idGenre) {
-            case 1:
-                return ({
-                    action: true,
-                    label: "Action"
-                })
-            case 2:
-                return ({
-                    action: true,
-                    label: "Adventure"
-                })
-            case 3:
-                return ({
-                    action: true,
-                    label: "Comedy"
-                })
-            case 4:
-                return ({
-                    action: true,
-                    label: "Fantasy"
-                })
-            case 5:
-                return ({
-                    action: true,
-                    label: "Horror"
-                })
-            case 6:
-                return ({
-                    action: true,
-                    label: "Martial Arts"
-                })
-            case 7:
-                return ({
-                    action: true,
-                    label: "Romance"
-                })
-            case 8:
-                return ({
-                    action: true,
-                    label: "Sci Fi"
-                })
-            case 9:
-                return ({
-                    action: true,
-                    label: "Space"
-                })
-            case 10:
-                return ({
-                    action: true,
-                    label: "Super Power"
-                })
-        }
-    }
-    res.render('main/results', {
-        headerGenre: getGenre(req.params.idGenre)
-    })
 })
 
 router.get("/getManga/:idMangapi", async(req, res, next) => {
