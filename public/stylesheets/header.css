@@ -78,6 +78,7 @@ nav {
     transform-origin: top;
     transition: transform 400ms ease-in-out;
     margin: 5em auto;
+    z-index: 9999;
 }
 
 nav ul {
@@ -261,6 +262,8 @@ nav a {
         background: none;
         top: initial;
         left: initial;
+        width: 60%;
+        margin: 0 auto;
 
     }
     nav ul {
