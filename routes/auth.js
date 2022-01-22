@@ -51,7 +51,7 @@ router.post("/signupgoogle", [
             });
             res.redirect('/users/user-profile');
         } else {
-            res.render('auth/signup', { errorMessage: 'Email is already registered. Try to login' });
+            res.redirect('/auth/login');
         }
 
     } catch (error) {
