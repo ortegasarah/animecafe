@@ -21,6 +21,10 @@
     color: white;
 }
 
+
+
+
+
 .buttonAut {
     background-color: #E8FCAB;
     border-radius: 20px;
@@ -33,15 +37,13 @@
 
 .centerText {
     text-align: center;
-    margin-top: 20px;
-}
+    margin-top: 20px;}
 
 .centerDiv {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3em auto;
-}
+    margin-top: 3em auto;}
 
 .boldtext {
     font-weight: bold;
@@ -60,4 +62,5 @@
 .auth-log {
     margin: 0 auto;
     padding: 3em;
+
 }

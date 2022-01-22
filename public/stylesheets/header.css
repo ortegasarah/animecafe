@@ -306,37 +306,7 @@ nav a {
         display: flex;
         margin: 2em 0;
     }
-    /* .nav-toggle-label {
-        display: none;
-    }
-
-    nav {
-        position: relative;
-        text-align: left;
-        transition: none;
-        transform: scale(1, 1);
-        background: none;
-        top: initial;
-        left: initial;
-    }
-
-    nav ul {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        padding: 0;
-        flex-direction: row;
-    }
-
-    nav li {
-
-        color: var(--black);
-    }
-
-    nav a {
-        opacity: 1;
-        position: relative;
-    } */
+   
     .search_box {
         width: 500px;
     }
