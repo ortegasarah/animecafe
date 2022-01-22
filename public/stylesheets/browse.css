@@ -1,27 +1,25 @@
 /* || HEART ICON ||*/
-svg#heart {
-    height: 25px;
-    width: 25px;
+
+svg.heart {
     margin-right: 5px;
-  }
-  
-  #heart-path {
+}
+
+.heart-path {
     fill: white;
     stroke: black;
     stroke-width: 2px;
     transition: all 1s ease-out;
-  }
-  
-  #heart-path:hover {
-    fill: var(--purple);
-  }
+}
 
-  #heart-path:visited {
+.heart-path:hover {
+    fill: var(--purple);
+}
+
+.heart-path:visited {
     fill: var(--purple);
     stroke-dashoffset: 0;
     stroke-dasharray: 125;
-  }
-
+}
 
 
 /* || GENRE STYLE ||*/
@@ -30,7 +28,6 @@ svg#heart {
     text-align: center;
     font-weight: 800;
     text-transform: uppercase;
-
 }
 
 .genres {
@@ -49,7 +46,6 @@ svg#heart {
     align-items: center;
     background-color: var(--beige);
     border-bottom: var(--black) 1px solid;
-
 }
 
 .header-browse {
@@ -74,32 +70,29 @@ svg#heart {
 
 
 /* || PAGINATION ||*/
+
 .pagination {
     justify-content: center;
     font-size: 2em;
-
 }
 
 .pagination li {
     font-size: 0.6em;
     font-weight: 500;
-   
 }
 
-.pagination li :hover{
-color: var(--purple);}
-
+.pagination li :hover {
+    color: var(--purple);
+}
 
 @media screen and (min-width: 768px) {
     .genres {
         margin: 4em;
         padding: 3em;
     }
-
     .genres-wrapper {
         flex-direction: row;
     }
-
     .header-browse {
         background-image: url(../images/sailor-moon-eternal-2359235.webp);
         height: 350px;
@@ -119,5 +112,4 @@ color: var(--purple);}
         justify-content: center;
         align-items: center;
     }
-
 }

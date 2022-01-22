@@ -67,16 +67,15 @@
         </table>
 
 
-        <div class="save-icon">
-          <a href="/folder/addAnime/{{mal_id}}/liked" class="liked-anime " style="width=40px; height=40px"> 
-            <svg viewBox="0 0 32 32" id="heart" >
-              <path id="heart-path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
+        <div class="save-icon pt-5">
+          <a href="/folder/addAnime/{{mangainfo.mal_id}}/liked"  class="liked-anime" >
+            <svg  width="40" height="40" viewBox="0 0 32 32" class="heart">
+                        <path class="heart-path" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
                             C30,20.335,16,28.261,16,28.261z" />
-            </svg>
+                    </svg>
           </a>
-          <a href="" data-bs-toggle="modal" data-bs-target="#mi-modal-{{mal_id}}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookmark"
-              viewBox="0 0 16 16">
+          <a href="" data-bs-toggle="modal" data-bs-target="#mi-modal-anime">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
               <path
                 d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
             </svg>
@@ -176,6 +175,32 @@
     {{/if}}
   </section>
   {{> footer}}
+
+
+  <!-- modals -->
+
+<div class="modal fade" id="mi-modal-anime" tabindex="-1" aria-hidden="true" aria-labelledby="label-modal-2"
+    data-bs-backdrop="static">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{mangainfo.title}}</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    {{#each boards}}
+                    <div class="list-group">
+                        <a href="/folder/addAnime/{{../mangainfo.mal_id}}/board/{{this._id}}"
+                            class="list-group-item list-group-item-action"
+                            style="text-transform: uppercase;">{{this.folderName}}</a>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
