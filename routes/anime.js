@@ -38,7 +38,6 @@ router.get("/browse", (req, res, next) => {
     let boards = [];
     if (req.session.currentUser) {
         const { _id: idUser } = req.session.currentUser;
-        console.log(idUser, process.env.ANIME_URI)
         axios.get(`${process.env.ANIME_URI}/folder/getFolders/${idUser}`)
             .then(response => {
                 boards = response.data.item;
@@ -49,7 +48,6 @@ router.get("/browse", (req, res, next) => {
     }
     axios.get(`https://api.jikan.moe/v3/top/anime/1/upcoming`)
         .then(responseAxios => {
-            console.log(responseAxios.data.top)
             const { top } = responseAxios.data;
             top.forEach(element => { element["boards"] = boards });
 
@@ -70,7 +68,6 @@ router.get("/genres/:id", (req, res) => {
     } = req.params;
     axios.get(`https://api.jikan.moe/v3/genre/anime/${id}/1`)
         .then(responseAxios => {
-            console.log(responseAxios)
             res.render("main/results", {
                 results: responseAxios.data.anime,
             });
@@ -86,7 +83,6 @@ router.get("/getManga/:idMangapi", async(req, res, next) => {
         const {
             idMangapi
         } = req.params;
-        console.log(req.params)
         if (!idMangapi) {
             return res.json({
                 "msg": "error no data"
@@ -158,6 +154,7 @@ router.post("/", async(req, res, next) => {
 
 router.get("/:id", async(req, res, next) => {
     try {
+        let boards = [];
         const {
             id
         } = req.params
@@ -173,9 +170,17 @@ router.get("/:id", async(req, res, next) => {
             data: mangainfo
         } = await axios.get(`https://api.jikan.moe/v3/anime/${id}`);
         const reviews = [...userReviews, ...reviewsApi.reviews]
+
+        if (req.session.currentUser) {
+            const { _id: idUser } = req.session.currentUser;
+            const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${idUser}`);
+            boards = folders.data.item;
+        }
+
         res.render("main/anime", {
             reviews,
             mangainfo,
+            boards,
             userInSession: req.session.currentUser
         });
     } catch (e) {
@@ -193,7 +198,6 @@ router.put("/:id", async(req, res, next) => {
             tittle,
             img
         } = req.body;
-        console.log("req.params ", id, "req.body", tittle, img)
         if (!id || !tittle || !img) {
             return res.json({
                 "msg": "error no data"
@@ -226,7 +230,6 @@ router.delete("/:id", async(req, res, next) => {
         const {
             id
         } = req.params;
-        console.log("req.params ", id)
         if (!id) {
             return res.json({
                 "msg": "error no data"

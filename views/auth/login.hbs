@@ -28,9 +28,10 @@
     </div>
 
     <div class="row justify-content-start g-0 pt-4">
-      <div class=" col col-lg-4 col-sm-12 col-md-6   align-self-end">
+      <div class=" d-none d-md-flex col col-lg-4 col-sm-12 col-md-6   align-self-end">
         <img src="../../images/auth/naruto-signup.png" class="narutoImg" alt="naruto">
       </div>
+
       <div class="col col-lg-4 col-sm-12 col-md-6  pt-2 align-self-center ">
         <div class="centerDiv">
           <div id="g_id_onload" data-client_id="43894148885-moag9ij740ugupq36u2tnqcutvhp321p.apps.googleusercontent.com"
@@ -91,7 +92,6 @@
 
 <script>
   function handleCredentialResponse(response) {
-    console.log(response.credential)
     const data = { id_token: response.credential };
     var url = (window.location.hostname.includes('localhost'))
       ? 'http://localhost:3000/auth/loginggoogle'

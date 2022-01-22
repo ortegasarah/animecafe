@@ -2,7 +2,6 @@ const router = require("express").Router();
 const axios = require("axios")
 
 router.get("/", (req, res, next) => {
-    console.log(req.query)
     if (Object.keys(req.query).length) {
         let {
             title,
@@ -15,7 +14,6 @@ router.get("/", (req, res, next) => {
         let boards = [];
         if (req.session.currentUser) {
             const { _id: idUser } = req.session.currentUser;
-            console.log(idUser, process.env.ANIME_URI)
             axios.get(`${process.env.ANIME_URI}/folder/getFolders/${idUser}`)
                 .then(response => {
                     boards = response.data.item;
@@ -27,7 +25,6 @@ router.get("/", (req, res, next) => {
 
         axios.get(`https://api.jikan.moe/v3/search/anime?q=${title}&page=${page}&order_by=${score}`)
             .then(responseAxios => {
-                console.log(responseAxios.data)
                 const { results } = responseAxios.data;
                 results.forEach(element => { element["boards"] = boards });
                 res.render("main/results", {
