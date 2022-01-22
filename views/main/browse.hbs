@@ -25,22 +25,21 @@
     <p>BROWSE</p>
   </div>
   <section id="browse-genres">
-      <div class="genres-wrapper">
-        {{#each genres}}
-        <div class="genres">
-          <h3><a href="/anime/genres/{{id}}">{{label}}</a></h3>
-        </div>
-        {{/each}}
+    <div class="genres-wrapper">
+      {{#each genres}}
+      <div class="genres">
+        <h3><a href="/anime/genres/{{id}}">{{label}}</a></h3>
+      </div>
+      {{/each}}
   </section>
-
+{{!-- 
+  <section id="results">
+    <div class="row p-5">
+      {{#each results }}
+      {{> cardPartial this }}
+      {{/each}}
     </div>
-<section id="results">
-  <div class="row p-5">
-    {{#each results }}
-    {{> cardPartial this }}
-    {{/each}}
-</div>
-</section>
+  </section> --}}
   {{/if}}
 
   {{> footer}}
