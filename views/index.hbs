@@ -25,8 +25,8 @@
                 {{!-- 1 --}}
                 <li>
                     <div class="carousel-txt">
-                        <h2>Attack on Titan</h2>
-                        <h2>Final season part 2</h2>
+                        <h2>Attack on Titan <br>Final season part 2</h2>
+                     
                         <div class=" button-landing">
                             <a type="buton" href="/anime/48583"> Discover</a>
                         </div>
@@ -38,8 +38,7 @@
                 {{!-- 2 --}}
                 <li>
                     <div class="carousel-txt">
-                        <h2>Yashahime:</h2>
-                        <h2>Princess half-demon</h2>
+                        <h2>Yashahime: <br> Princess half-demon</h2>
                         <div class=" button-landing">
                             <a type="buton" href="/anime/41911"> Discover</a>
                         </div>
@@ -79,26 +78,8 @@
         <main>
 
 
-            {{!--
-            <div class="container-fluid">
-                <div class="row landingImg justify-content-end">
-                    <div class="col-12 col-md-5 mr-5" style="align-self: center;">
-                        <div class="cardLand p-4">
-                            <h4 class="bold" style="font-size: 25px;"> YASHAHIME: </h4>
-                            <h4 class="bold" style="font-size: 25px;"> PRINCESS HALF-DEMON</h4>
-                            <p class="pt-2" style="font-size: 20px;">The daughters of Sesshomaru and Inuyasha set out on
-                                a journey transcending time!</p>
-                            <div class=" button-landing">
-                                <a type="buton" href="/anime/41911"> Discover</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="row p-5">
-                <p class="bold pb-4" style="font-size: 25px;">NEW RELEASES THIS MONTH</p>
+                <h3 class="title-style">New releases </h3>
                 {{#each articles}}
                 {{> cardPartial this }}
                 {{/each}}
@@ -143,7 +124,7 @@
 
 
             <div class="row p-5">
-                <p class="bold" style="font-size: 25px;">BEST RANKED</p>
+               <h3 class="title-style">BEST RANKED</h3>
                 {{#each top}}
                 {{> cardPartial this }}
                 {{/each}}
