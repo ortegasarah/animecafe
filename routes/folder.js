@@ -12,7 +12,7 @@ router.get("/:id", async(req, res, next) => {
             const folder = await Folder.findOne({ _id: id, active: true })
                 .populate("contentFolder");
             //.populate("user");
-            console.log(folder)
+            //console.log("*****", folder)
             if (folder) {
                 res.render("users/folder-result", { userInSession: req.session.currentUser, folder });
             } else {
@@ -23,10 +23,8 @@ router.get("/:id", async(req, res, next) => {
         }
 
     } catch (e) {
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        console.log(e);
+        res.render("error");
     }
 });
 
@@ -59,11 +57,8 @@ router.get("/getFolders/:iduser", async(req, res, next) => {
             });
         }
     } catch (e) {
-        console.log("**********", e)
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        console.log(e);
+        res.render("error");
     }
 });
 
@@ -90,14 +85,11 @@ router.post("/", async(req, res, next) => {
         const folders = await axios.get(`${process.env.ANIME_URI}/folder/getFolders/${isUser}`);
         //console.log(folders)
         const contentFolder = folders.data.item;
-        res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
+        res.redirect('/users/user-profile');
 
     } catch (e) {
-        console.log(e)
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        console.log(e);
+        res.render("error");
     }
 
 
@@ -132,25 +124,25 @@ router.get("/addAnime/:idManga/liked", async(req, res, next) => {
         res.redirect("/");
     } catch (e) {
         console.log(e)
-
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        res.render("error");
     }
 });
 
 
-router.post("/addManga/:id", async(req, res, next) => {
+router.get("/addAnime/:idAnime/board/:id", async(req, res, next) => {
     /**
      * params id: folder
      * summary: add a manga to folder
      */
     try {
-        const { id } = req.params;
-        const { idMangapi, tittle, img } = req.body;
-        console.log("req.params ", id, "req.body", tittle, img)
-        if (!id || !idMangapi || !img || !tittle) res.render("error");
+        const { idAnime: idManga, id } = req.params;
+        if (!req.session.currentUser) {
+            res.redirect("/auth/login");
+        }
+
+        const { data: mangainfo } = await axios.get(`https://api.jikan.moe/v3/anime/${idManga}`);
+        const { mal_id: idMangapi, title: tittle, image_url: img } = mangainfo;
+
         let manga = await Manga.findOne({ idMangapi, active: true });
         if (!manga) {
             data = {
@@ -160,19 +152,14 @@ router.post("/addManga/:id", async(req, res, next) => {
             };
             manga = await Manga.create(data);
         }
-        const fold = await Folder.findById(id);
+        const fold = await Folder.findById(id)
         let mangas = fold.contentFolder;
         mangas.push(manga._id);
-        const folder = await Folder.findByIdAndUpdate(id, { contentFolder: mangas, }, { new: true })
-        return res.json({
-            "msg": "add  manga to folder",
-            "item": folder
-        });
+        const folder = await Folder.findByIdAndUpdate(fold._id, { contentFolder: mangas, }, { new: true })
+        res.redirect("/");
     } catch (e) {
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        console.log(e);
+        res.render("error");
     }
 });
 
@@ -192,10 +179,8 @@ router.post("/update/:id", async(req, res, next) => {
         res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
 
     } catch (e) {
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        console.log(e);
+        res.render("error");
     }
 });
 
@@ -219,43 +204,40 @@ router.post("/delete/:id", async(req, res, next) => {
         res.render('users/user-profile', { userInSession: req.session.currentUser, folders: contentFolder });
 
     } catch (e) {
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        console.log(e);
+        res.render("error");
     }
 });
 
 
-router.delete("/deleteAmanga/:id", async(req, res, next) => {
+router.post("/deleteAnime/:id", async(req, res, next) => {
     /**
      * params id: folder
      * summary: update active folder
      */
     try {
         const { id } = req.params;
-        const { idManga } = req.body
-        console.log("req.params ", id)
-        if (!id || !idManga) res.render("error");
+        const { idAnime } = req.body
+        console.log("req.params ", id, "req.body", idAnime)
+        if (!id || !idAnime) res.render("error");
         const fold = await Folder.findById(id);
-        let mangas = fold.manga;
-        for (let i = 0; i < mangas.length; i++) {
-            if (mangas[i] == idManga) {
-                mangas.splice(i, 1);
+        console.log(fold)
+        let animes = fold.contentFolder;
+        for (let i = 0; i < animes.length; i++) {
+            console.log(animes[i], idAnime)
+            if (animes[i] == idAnime) {
+                console.log("entre")
+                animes.splice(i, 1);
                 break
             }
         }
-        const folder = await Folder.findByIdAndUpdate(id, { manga: mangas, }, { new: true })
-        return res.json({
-            "msg": "delete a  manga fro a  folder",
-            "item": folder
-        });
+        console.log(animes)
+        const folder = await Folder.findByIdAndUpdate(id, { contentFolder: animes, }, { new: true })
+        res.redirect(`/folder/${id}`);
 
     } catch (e) {
-        return res.json({
-            "msg": "error",
-            "e": e
-        });
+        console.log(e);
+        res.render("error");
     }
 });
 module.exports = router;

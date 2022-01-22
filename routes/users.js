@@ -56,7 +56,7 @@ router.post('/', async(req, res, next) => {
         user.name = name;
         await user.save();
         req.session.currentUser = user;
-        res.render('users/profile', { user_s: user, uri: process.env.ANIME_URI });
+        res.redirect(`/users/profile/${user._id}`);
 
 
     } catch (e) {
@@ -75,6 +75,7 @@ router.post("/delete/:id", async(req, res, next) => {
 
     } catch (e) {
         console.log(e);
+        res.render("error");
     }
 });
 
