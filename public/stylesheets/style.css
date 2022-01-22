@@ -38,21 +38,6 @@ h1 {
     padding-top: 1em;
 }
 
-/* .buttonLan {
-    border-radius: 20px;
-    width: 30%;
-    border-style: solid;
-    text-decoration: none;
-    border-width: 1px;
-    border-color: var(--black);
-    padding: 10px 7px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    color: var(--black);
-} */
-
 .landingImg {
     background-image: url(../images/yashahime-landpage.jpeg);
     height: 700px;
@@ -98,13 +83,6 @@ main .container-fluid {
 
 
 /*card partial landing*/
-
-.card_partial {
-    background-color: red;
-    /*width: 150px;
-    height: 150px;*/
-}
-
 a,
 a:hover {
     color: var(--black);
