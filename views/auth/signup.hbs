@@ -21,7 +21,7 @@
 
     <div class="row justify-content-center g-0">
       <div class="col col-lg-6  pt-1">
-       <h3 class="title-style"> Welcome to Mangakafe</h3>
+       <h3 class="title-style"> Welcome to animecafe</h3>
       </div>
     </div>
 
@@ -106,7 +106,7 @@
     const data = { id_token: response.credential };
     var url = (window.location.hostname.includes('localhost'))
       ? 'http://localhost:3000/auth/signupgoogle'
-      : 'https://mangakafe.herokuapp.com/auth/signupgoogle'
+      : 'https://animecafe.herokuapp.com/auth/signupgoogle'
 
     fetch(url, {
       method: 'POST',
