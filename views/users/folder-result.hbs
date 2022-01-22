@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body style="height: 100vh">
     {{> header user = userInSession}}
     {{#if userInSession}}
 
@@ -37,24 +37,29 @@
         </div>
 
 {{#if folder.contentFolder}}
-
-
-        <div class="container pb-5"  style="height: 100vh">
-
+        <div class="container pb-5"  >
             <div class="row">
                 {{#each folder.contentFolder}}
-                    <div  class="col-12 col-md-6 col-lg-3  pb-5">
-                        <div class="row">
-                            <h4 class="text-center">{{this.tittle}}</h4>
-                            <div class="col-8" style="border-radius: 25px;">
-                                <a href="/anime/{{this.idMangapi}}"  class="pb-5">
-                                    <img src="{{this.img}}"  alt="{{this.tittle}}" style="border-radius: 10%">
+                    <div class="col-12 col-md-3">
+                        <div class="card mb-2" style="max-width: 400px;">
+                            <div class="card-deck">
+                                <div class="img-card-partials">
+                                    <a href="/anime/{{this.idMangapi}}">
+                                        <img class="card-img-top" src="{{img}}" alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    {{#if title_english}}
+                                    <p class="card-title bold">{{title_english}}</p>
+                                    {{else}}
+                                    <p class="card-title bold">{{tittle}}</p>
+                                    {{/if}}
+                                    <br>
+                                    <form action="/folder/deleteAnime/{{../folder._id}}" method="POST" class="pt-2 d-flex justify-content-end">
+                                        <input type="text" style="display: none;" name="idAnime"  value={{this._id}}>
+                                        <button type="submit" class="btn btn-danger pt-2" >Delete anime </button>
+                                    </form>
+                                </div>
                                 </a>
-                                <br>
-                                <form action="/folder/deleteAnime/{{../folder._id}}" method="POST" class="pt-2 d-flex justify-content-end">
-                                    <input type="text" style="display: none;" name="idAnime"  value={{this._id}}>
-                                    <button type="submit" class="btn btn-danger pt-2" >Delete anime </button>
-                                </form>
                             </div>
                         </div>
                     </div>
