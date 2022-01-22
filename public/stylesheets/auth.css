@@ -3,6 +3,27 @@
     height: 100vh;
 }
 
+.btn-signin {
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    color: black;
+    transition: 0.3s;
+    padding: 0.8em;
+    border: 1px solid black;
+    background-color: var(--yellow);
+}
+
+.btn-signin:hover {
+    background-color: black;
+    color: white;
+}
+
+
+
+
 
 .buttonAut {
     background-color: #E8FCAB;
@@ -34,12 +55,22 @@
 }
 
 .contentImgNaruto {
-    display: flex;
+    display: none;
     justify-content: flex-start;
 }
 
-@media (max-width: 600px) {
+.auth-log {
+    margin: 0 auto;
+    padding: 3em;
+
+}
+
+.auth-log .centerText {
+    font-family: p22-mackinac-pro, serif;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
     .contentImgNaruto {
-        display: none;
+        display:flex;
     }
 }

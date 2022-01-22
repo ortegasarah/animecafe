@@ -142,12 +142,12 @@ a:hover {
     border: 2px var(--purple) solid;
     text-transform: uppercase;
     font-weight: 500;
-    margin: 5% auto;
+    margin: 0 auto;
 }
 
 
 .button-landing a {
-    margin: 50px 13px;
+    margin: 0 13px;
     color: var(--purple);
 
 }
@@ -301,7 +301,7 @@ a:hover {
         font-family: p22-mackinac-pro, serif;
         color: var(--black);
         font-size: 3em;
-        margin: 0 auto;
+        margin: 1em auto;
     }
     
 }
